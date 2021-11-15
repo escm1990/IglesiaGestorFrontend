@@ -1,0 +1,52 @@
+<div class="container" *ngIf="iglesia">
+  <div class="row mt-5">
+      <div class="col-md-8 mx-auto">
+          <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+              <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre"
+                  [(ngModel)]="iglesia.nombre" required>
+              </div>
+              <div class="form-group">
+                  <label for="direccion">Direcci&oacute;n</label>
+                  <input type="text" class="form-control" id="direccion" name="direccion"
+                  [(ngModel)]="iglesia.direccion" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">Tel&eacute;fono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono"
+                [(ngModel)]="iglesia.telefono" required>
+              </div>
+              <div class="form-group">
+                <label for="correo">Correo</label>
+                <input type="email" class="form-control" id="correo" name="correo"
+                [(ngModel)]="iglesia.correo" required>
+              </div>
+              <div class="form-group">
+                <label for="pais">Pa&iacute;s</label>
+                <input type="text" class="form-control" id="pais" name="pais"
+                [(ngModel)]="iglesia.pais" required>
+              </div>
+              <div class="form-group">
+                <label for="fechaFundacion">Fecha Fundaci&oacute;n</label>
+                <input type="text" class="form-control" id="fechaFundacion" name="fechaFundacion"
+                [(ngModel)]="iglesia.fechaFundacion" required>
+              </div>
+              <div class="form-group">
+                <label for="logo">Logo</label>
+                <input type="text" class="form-control" id="logo" name="logo"
+                [(ngModel)]="iglesia.logo" required>
+              </div>
+              <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado"
+                [(ngModel)]="iglesia.estado" required>
+              </div>
+              <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
+                  <i class="fas fa-pencil-alt"></i> Actualizar</button>
+              <button class="btn btn-outline-primary btn-block" (click)="volver()">
+                  <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+          </form>
+      </div>
+  </div>
+</div>

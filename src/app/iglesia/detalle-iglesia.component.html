@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row mt-5" *ngIf="iglesia">
+    <div class="col-md-8 mx-auto">
+
+            <div class="card-header text-center">
+              Detalle
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>ID: </b>{{iglesia.id}}</li>
+              <li class="list-group-item"><b>Nombre: </b>{{iglesia.nombre}}</li>
+              <li class="list-group-item"><b>Direcci&oacute;n: </b>{{iglesia.direccion}}</li>
+              <li class="list-group-item"><b>Correo: </b>{{iglesia.correo}}</li>
+              <li class="list-group-item"><b>Tel&eacute;fono: </b>{{iglesia.telefono}}</li>
+              <li class="list-group-item"><b>Pais: </b>{{iglesia.pais}}</li>
+              <li class="list-group-item"><b>Fecha Fundaci&oacute;n: </b>{{iglesia.fechaFundacion}}</li>
+              <li class="list-group-item"><b>Logo: </b>{{iglesia.logo}}</li>
+              <li class="list-group-item"><b>Estado: </b>{{iglesia.estado}}</li>
+            </ul>
+            <div class="card-footer">
+                <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </div>
+
+
+    </div>
+</div>
+</div>
