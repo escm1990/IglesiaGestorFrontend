@@ -1,8 +1,21 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IglesiaService } from './../service/iglesia.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Iglesia } from '../models/iglesia';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import * as data from '../../assets/paises.json';
+import { UploadFilesService } from './../service/upload-files.service';
+import { Observable } from 'rxjs';
+
+export class PaisesTel {
+  name_en: string;
+  name_es: string;
+  dial_code: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-nuevo-iglesia',
@@ -19,16 +32,61 @@ export class NuevoIglesiaComponent implements OnInit {
   logo = '';
   estado = 'ACTIVO';
   pais = '';
+  dialcode = '';
+  events: string[] = [];
+  fechaTemp: Date;
+  formIglesia: FormGroup;
+  paisesArray: PaisesTel[] = [];
+  nombreArchivo: string = '';
+
+  //Lista de archivos seleccionados
+  selectedFiles: FileList;
+  //Es el array que contiene los items para mostrar el progreso de subida de cada archivo
+  progressInfo: any = [];
+  //Mensaje que almacena la respuesta de las Apis
+  message = '';
+  //Nombre del archivo para usarlo posteriormente en la vista html
+  fileName = "";
+  fileInfos : Observable<any> | null;
 
   constructor(
     private iglesiaService: IglesiaService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private uploadFilesService: UploadFilesService
+    ) { }
 
   ngOnInit(): void {
+
+    this.buildForm();
+
+    this.paisesArray = (data as any).default;
+
+    this.fileInfos = this.uploadFilesService.getFiles();
+
+  }
+
+  private buildForm(){
+    this.formIglesia = this.formBuilder.group({
+      nombre: new FormControl('', [Validators.required]),
+      direccion: new FormControl('', [Validators.required]),
+      pais: new FormControl('', [Validators.required]),
+      telefono: new FormControl('', [Validators.required]),
+      fechaFormulario: new FormControl({value: '', disabled: true},[Validators.required]),
+      correo: new FormControl('', [ Validators.email]),
+      logo: new FormControl('')
+    });
   }
 
   onCreate(): void {
+    this.nombre = this.formIglesia.get('nombre')?.value;
+    this.direccion =  this.formIglesia.get('direccion')?.value;
+    this.pais =  this.formIglesia.get('pais')?.value;
+    this.telefono =  this.dialcode+this.formIglesia.get('telefono')?.value;
+    this.correo =  this.formIglesia.get('correo')?.value;
+    this.logo =  this.nombreArchivo;
+
     const iglesia = new Iglesia(this.nombre, this.direccion, this.pais, this.correo, this.telefono, this.estado, this.logo, this.fechaFundacion);
     this.iglesiaService.guardar(iglesia).subscribe(
       data => {
@@ -44,10 +102,71 @@ export class NuevoIglesiaComponent implements OnInit {
         // this.router.navigate(['/']);
       }
     );
+
+    this.uploadFiles();
+
   }
 
   volver(): void {
     this.router.navigate(['/dashboard/iglesia/listar']);
   }
+
+  public onDate(event: MatDatepickerInputEvent<Date>): void {
+    this.events = [];
+    this.events.push(`${event.value}`);
+    this.fechaTemp = new Date(this.events[0].toString());
+    this.fechaFundacion = new Date(this.fechaTemp).getTime();
+  }
+
+  onChangeSelect(event: String) : void{
+    for (let elemento of this.paisesArray){
+      if(elemento.name_es === event){
+        this.dialcode = elemento.dial_code;
+      }
+    }
+  }
+
+  cargarImagen(event: any ){
+    this.nombreArchivo = event.target.value.replace("C:\\fakepath\\", "");
+    this.selectFiles(event);
+  }
+
+  selectFiles(event: any) {
+    this.progressInfo = [];
+    //Validación para obtener el nombre del archivo si es uno solo
+    //En caso de que sea >1 asigna a fileName length
+    event.target.files.length == 1 ? this.fileName = event.target.files[0].name : this.fileName = event.target.files.length + " archivos";
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadFiles() {
+    this.message = '';
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      this.upload(i, this.selectedFiles[i]);
+    }
+  }
+
+  upload(index: number, file: File) {
+    this.progressInfo[index] = { value: 0, fileName: file.name };
+
+    this.uploadFilesService.upload(file).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+
+          if (event.total) {
+            const total: number = event.total;
+            this.progressInfo[index].value = Math.round(100 * event.loaded / total);
+          }
+
+        } else if (event instanceof HttpResponse) {
+          this.fileInfos = this.uploadFilesService.getFiles();
+        }
+      },
+      err => {
+        this.progressInfo[index].value = 0;
+        this.message = 'No se puede subir el archivo ' + file.name;
+      });
+  }
+
 
 }

@@ -1,1 +1,45 @@
-<p>registro works!</p>
+
+      <div class="text-certer" *ngIf="isLogged; else loggedOut">
+        <h2>Ya has iniciado sesion</h2>
+      </div>
+
+      <ng-template #loggedOut>
+        <div class="container d-flex justify-content-center">
+          <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active"routerLink="/registro">Registrarse</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+                  <div class="form-group">
+                    <label for="usuario">Nombre de Usuario</label>
+                    <input type="text" name="usuario" id="usuario" class="form-control"
+                      [(ngModel)] ="usuario" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control"
+                      [(ngModel)] ="password" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="usuario">Correo</label>
+                    <input type="text" name="correo" id="correo" class="form-control"
+                      [(ngModel)] ="correo" required>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
+                        <i class="fas fa-sign-in-alt"></i> Crear Cuenta</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>

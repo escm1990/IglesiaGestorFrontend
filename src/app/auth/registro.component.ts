@@ -1,4 +1,9 @@
+import { ToastrService } from 'ngx-toastr';
+import { NuevoUsuario } from './../models/nuevo-usuario';
+import { AuthService } from './../service/auth.service';
+import { TokenService } from './../service/token.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -7,9 +12,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor() { }
+  nuevoUsuario: NuevoUsuario;
+  usuario: string;
+  password: string;
+  correo: string;
+  estado: string = 'ACTIVO';
+  errMsj: String;
+  isLogged: boolean = false;
+
+
+  constructor(
+    private tokenService: TokenService,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }
+
+  }
+
+  onRegister(): void{
+    this.nuevoUsuario = new NuevoUsuario(this.usuario, this.password, this.correo, this.estado);
+    this.authService.nuevo(this.nuevoUsuario).subscribe(
+      data => {
+        this.toastr.success('Usuario Creado', 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        this.router.navigate(['/login']);
+      },
+      err =>{
+        this.errMsj = err.error.mensaje;
+        this.toastr.success('Error al crear cuenta: '+this.errMsj, 'Fail', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        //console.log(this.errMsj);
+      }
+    );
   }
 
 }

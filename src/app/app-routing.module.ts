@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IglesiaGuardService as guard} from './guards/iglesia-guard.service';
+
 
 const routes: Routes = [
 
@@ -19,10 +21,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full' },
     {path:'home', component:HomeComponent},
-    {path:'iglesia/listar', component:ListaIglesiaComponent},
-    {path:'iglesia/detalle/:id', component:DetalleIglesiaComponent},
-    {path:'iglesia/nuevo', component:NuevoIglesiaComponent},
-    {path:'iglesia/editar/:id', component:EditarIglesiaComponent}
+    {path:'iglesia/listar', component:ListaIglesiaComponent, canActivate: [guard], data: { expectedRol: ['admin','user'] }},
+    {path:'iglesia/detalle/:id', component:DetalleIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin','user'] }},
+    {path:'iglesia/nuevo', component:NuevoIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin'] }},
+    {path:'iglesia/editar/:id', component:EditarIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin'] }}
   ]
   },
 ];
