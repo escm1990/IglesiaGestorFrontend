@@ -24,7 +24,8 @@ export class IglesiaGuardService implements CanActivate{
       }
     });
     if(!this.tokenService.getToken() || expectedRol.indexOf(this.realRol) === -1){
-      this.router.navigate(['/dashboard/iglesia/listar']);
+      //this.router.navigate(['/dashboard/iglesia/listar']);
+      this.router.navigate(['/dashboard/home']);
       return false;
     }
     return true;

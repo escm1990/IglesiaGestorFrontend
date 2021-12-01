@@ -3,6 +3,7 @@ import { IglesiaService } from './../service/iglesia.service';
 import { Component, OnInit } from '@angular/core';
 import { Iglesia } from '../models/iglesia';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-iglesia',
@@ -19,7 +20,8 @@ export class ListaIglesiaComponent implements OnInit {
   constructor(
     private IglesiaService: IglesiaService,
     private toastr: ToastrService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class ListaIglesiaComponent implements OnInit {
         this.isAdmin = true;
       }
     });
+
   }
 
   cargarIglesias(): void {

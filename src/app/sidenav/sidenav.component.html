@@ -1,30 +1,46 @@
 <mat-nav-list>
+
   <div class="logo py-4">
-    <img src="./assets/logo.svg" alt="Company Logo" />
+    <img src="./assets/logo1.png" alt="Company Logo" />
   </div>
+
   <mat-divider></mat-divider>
   <h2 matSubheader class="mt-2">APPLICATIONS</h2>
 
   <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/home">
     <mat-icon>home</mat-icon> Inicio
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/iglesia/listar">
-    <mat-icon>domain</mat-icon> Iglesias
-  </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard//miembro/listar">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/miembro/listar">
     <mat-icon>person</mat-icon> Miembros
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard//evento/listar">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/evento/listar">
     <mat-icon>event</mat-icon> Eventos
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard//movimiento/listar">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/movimiento/listar">
     <mat-icon>attach_money</mat-icon> Finanzas
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard//cierre/listar">
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/cierre/listar">
     <mat-icon>money</mat-icon> Cierres
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard//auditoria/listar">
-    <mat-icon>style</mat-icon> Auditoria
-  </a>
+
+  <mat-list-item *ngIf="isAdmin" (click)="showSubmenu = !showSubmenu" class="parent">
+    <span class="full-width" *ngIf="isExpanded || isShowing">Administraci&oacute;n</span>
+    <mat-icon mat-list-icon>settings</mat-icon>
+    <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+  </mat-list-item>
+  <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/iglesia/listar">
+      <mat-icon>domain</mat-icon> Iglesias
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/usuario/listar">
+      <mat-icon>supervisor_account</mat-icon> Usuarios
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/rol/listar">
+      <mat-icon>verified_user</mat-icon> Roles
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/auditoria/listar">
+      <mat-icon>style</mat-icon> Auditoria
+    </a>
+  </div>
 
 </mat-nav-list>

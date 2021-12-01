@@ -21,8 +21,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full' },
     {path:'home', component:HomeComponent},
-    {path:'iglesia/listar', component:ListaIglesiaComponent, canActivate: [guard], data: { expectedRol: ['admin','user'] }},
-    {path:'iglesia/detalle/:id', component:DetalleIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin','user'] }},
+    {path:'iglesia/listar', component:ListaIglesiaComponent, canActivate: [guard], data: { expectedRol: ['admin'] }},
+    {path:'iglesia/detalle/:id', component:DetalleIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin'] }},
     {path:'iglesia/nuevo', component:NuevoIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin'] }},
     {path:'iglesia/editar/:id', component:EditarIglesiaComponent,  canActivate: [guard], data: { expectedRol: ['admin'] }}
   ]
