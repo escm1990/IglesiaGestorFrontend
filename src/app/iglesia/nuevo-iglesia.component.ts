@@ -58,13 +58,9 @@ export class NuevoIglesiaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
     this.buildForm();
-
     this.paisesArray = (data as any).default;
-
     this.fileInfos = this.uploadFilesService.getFiles();
-
   }
 
   private buildForm(){

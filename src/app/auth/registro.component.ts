@@ -1,9 +1,14 @@
+import { Iglesia } from './../models/iglesia';
+import { IglesiaService } from './../service/iglesia.service';
 import { ToastrService } from 'ngx-toastr';
 import { NuevoUsuario } from './../models/nuevo-usuario';
 import { AuthService } from './../service/auth.service';
 import { TokenService } from './../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registro',
@@ -20,7 +25,6 @@ export class RegistroComponent implements OnInit {
   errMsj: String;
   isLogged: boolean = false;
 
-
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
@@ -33,7 +37,6 @@ export class RegistroComponent implements OnInit {
     if(this.tokenService.getToken()){
       this.isLogged = true;
     }
-
   }
 
   onRegister(): void{

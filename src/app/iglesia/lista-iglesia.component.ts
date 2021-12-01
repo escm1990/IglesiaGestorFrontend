@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class ListaIglesiaComponent implements OnInit {
 
-
   Iglesias: Iglesia[] = [];
   roles: string[];
   isAdmin = false;
@@ -20,9 +19,8 @@ export class ListaIglesiaComponent implements OnInit {
   constructor(
     private IglesiaService: IglesiaService,
     private toastr: ToastrService,
-    private tokenService: TokenService,
-    private router: Router
-  ) { }
+    private tokenService: TokenService
+      ) { }
 
   ngOnInit() {
     this.cargarIglesias();
@@ -55,7 +53,7 @@ export class ListaIglesiaComponent implements OnInit {
         this.cargarIglesias();
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Error (Listar)', {
+        this.toastr.error(err.error.mensaje, 'Error (borrar)', {
           timeOut: 3000, positionClass: 'toast-top-center',
         });
       }

@@ -5,14 +5,12 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 @Injectable({
   providedIn: 'root'
 })
-export class IglesiaGuardService implements CanActivate{
+export class TipoEventoGuardService  implements CanActivate{
 
   realRol: String;
 
-  constructor(
-    private tokenService: TokenService,
-    private router: Router
-  ) { }
+  constructor(private tokenService: TokenService,
+              private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean{
     const expectedRol = route.data.expectedRol;

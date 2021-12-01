@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Iglesia } from '../models/iglesia';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Iglesia } from '../models/iglesia';
 })
 export class IglesiaService {
 
-  iglesiaUrl = 'http://localhost:9090/api/iglesia/';
+  iglesiaUrl = environment.iglesiaUrl;
 
   constructor(private httpClient: HttpClient) { }
 

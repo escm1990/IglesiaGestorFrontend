@@ -25,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { LoginComponent } from './auth/login.component';
@@ -36,6 +38,10 @@ import { EditarIglesiaComponent } from './iglesia/editar-iglesia.component';
 import { interceptorProvider } from './interceptors/iglesia-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { ListaTipoEventoComponent } from './tipo-evento/lista-tipo-evento.component';
+import { NuevoTipoEventoComponent } from './tipo-evento/nuevo-tipo-evento.component';
+import { EditarTipoEventoComponent } from './tipo-evento/editar-tipo-evento.component';
+import { DetalleTipoEventoComponent } from './tipo-evento/detalle-tipo-evento.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,11 @@ import { UploadFilesComponent } from './upload-files/upload-files.component';
     DetalleIglesiaComponent,
     ListaIglesiaComponent,
     EditarIglesiaComponent,
-    UploadFilesComponent
+    UploadFilesComponent,
+    ListaTipoEventoComponent,
+    NuevoTipoEventoComponent,
+    EditarTipoEventoComponent,
+    DetalleTipoEventoComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +83,8 @@ import { UploadFilesComponent } from './upload-files/upload-files.component';
     MatProgressBarModule,
     MatButtonModule,
     MatCardModule,
+    MatAutocompleteModule,
+    MatInputModule,
     //Toasts
     ToastrModule.forRoot()
   ],

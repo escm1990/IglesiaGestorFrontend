@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-md-8 mx-auto">
+        <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formTipoEvento">
+          <div class="form-group">
+            <mat-label>Descripci&oacute;n </mat-label>
+            <input name="descripcion"  class="form-control" formControlName="descripcion" type="text" />
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formTipoEvento.get('descripcion')?.hasError('required') && formTipoEvento.get('descripcion')?.touched">
+            Campo requerido
+          </div>
+
+          <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Iglesia</mat-label>
+              <input type="text"
+                     placeholder="- Seleccione - "
+                     aria-label="Iglesia"
+                     matInput
+                     [formControl]="myControl"
+                     [matAutocomplete]="auto" required>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeSelect($event.option.value)">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+
+          <button class="btn btn-outline-success btn-block" [disabled]="formTipoEvento.invalid">
+            <i class="fas fa-plus-circle"></i> Crear</button>
+          <button class="btn btn-outline-primary btn-block" (click)="volver()">
+            <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+        </form>
+      </div>
+  </div>
+</div>
