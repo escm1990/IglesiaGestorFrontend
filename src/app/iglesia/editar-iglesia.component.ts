@@ -1,3 +1,4 @@
+import { TokenService } from './../service/token.service';
 import { environment } from './../../environments/environment';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadFilesService } from './../service/upload-files.service';
@@ -63,43 +64,15 @@ export class EditarIglesiaComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private uploadFilesService: UploadFilesService
+    private uploadFilesService: UploadFilesService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit() {
 
     this.paisesArray = (data as any).default;
 
-    const id = this.activatedRoute.snapshot.params.id;
-    this.iglesiaService.detalle(id).subscribe(
-      data => {
-        this.iglesia = data;
-
-        this.nombre = this.iglesia.nombre;
-        this.direccion = this.iglesia.direccion;
-        this.pais =  this.iglesia.pais;
-        this.telefono =  this.iglesia.telefono;
-        this.correo =  this.iglesia.correo;
-        this.urlImagen = this.rutaCarpeta+this.iglesia.logo;
-        this.nombreArchivoAnterior = this.iglesia.logo.toString();
-        this.estado =  this.iglesia.estado;
-        this.fechaFundacion = this.iglesia.fechaFundacion;
-
-        for (let elemento of this.paisesArray){
-          if(elemento.name_es === this.iglesia.pais){
-            this.dialcode = elemento.dial_code;
-          }
-        }
-
-        this.buildForm();
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Error (Detalle2)', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
-        this.router.navigate(['/dashboard/iglesia/listar']);
-      }
-    );
+    this.cargarDetalle();
 
   }
 
@@ -127,6 +100,7 @@ export class EditarIglesiaComponent implements OnInit {
     this.iglesia.logo = this.nombreArchivo === '' || this.nombreArchivo === null ? this.iglesia.logo : this.nombreArchivo;
     this.iglesia.fechaFundacion =  this.fechaFundacion;
     this.iglesia.estado = this.formIglesia.get('estado')?.value;
+    this.iglesia.ultimoUsuario = this.tokenService.getUsername();
 
     this.iglesiaService.modificar(id, this.iglesia).subscribe(
       data => {
@@ -221,5 +195,38 @@ export class EditarIglesiaComponent implements OnInit {
   milisegundosFecha(milisegundos: number) : Date{
     var date = new Date(milisegundos);
     return date;
+  }
+
+  cargarDetalle(){
+    const id = this.activatedRoute.snapshot.params.id;
+    this.iglesiaService.detalle(id).subscribe(
+      data => {
+        this.iglesia = data;
+
+        this.nombre = this.iglesia.nombre;
+        this.direccion = this.iglesia.direccion;
+        this.pais =  this.iglesia.pais;
+        this.telefono =  this.iglesia.telefono;
+        this.correo =  this.iglesia.correo;
+        this.urlImagen = this.rutaCarpeta+this.iglesia.logo;
+        this.nombreArchivoAnterior = this.iglesia.logo.toString();
+        this.estado =  this.iglesia.estado;
+        this.fechaFundacion = this.iglesia.fechaFundacion;
+
+        for (let elemento of this.paisesArray){
+          if(elemento.name_es === this.iglesia.pais){
+            this.dialcode = elemento.dial_code;
+          }
+        }
+
+        this.buildForm();
+      },
+      err => {
+        this.toastr.error(err.error.mensaje, 'Error (Detalle2)', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
+        this.router.navigate(['/dashboard/iglesia/listar']);
+      }
+    );
   }
 }

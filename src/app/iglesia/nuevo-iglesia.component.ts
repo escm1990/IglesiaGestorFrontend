@@ -1,3 +1,4 @@
+import { TokenService } from './../service/token.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -54,7 +55,8 @@ export class NuevoIglesiaComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private uploadFilesService: UploadFilesService
+    private uploadFilesService: UploadFilesService,
+    private tokenService: TokenService
     ) { }
 
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class NuevoIglesiaComponent implements OnInit {
     this.correo =  this.formIglesia.get('correo')?.value;
     this.logo =  this.nombreArchivo;
 
-    const iglesia = new Iglesia(this.nombre, this.direccion, this.pais, this.correo, this.telefono, this.estado, this.logo, this.fechaFundacion);
+    const iglesia = new Iglesia(this.nombre, this.direccion, this.pais, this.correo, this.telefono, this.estado, this.logo, this.fechaFundacion, this.tokenService.getUsername());
     this.iglesiaService.guardar(iglesia).subscribe(
       data => {
         this.toastr.success('Iglesia Creada', 'OK', {

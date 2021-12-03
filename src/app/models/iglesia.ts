@@ -8,8 +8,9 @@ export class Iglesia {
 	 logo: String;
 	 estado: String;
    fechaFundacion: number;
+   ultimoUsuario: String;
 
-   constructor(nombre: string, direccion: string, pais: string, correo : string, telefono : string, estado : string, logo : string, fechaFundacion: number){
+   constructor(nombre: string, direccion: string, pais: string, correo : string, telefono : string, estado : string, logo : string, fechaFundacion: number, ultimoUsuario: string){
     this.nombre = nombre;
     this.direccion = direccion;
     this.pais = pais;
@@ -18,6 +19,7 @@ export class Iglesia {
     this.telefono = telefono;
     this.logo = logo;
     this.fechaFundacion = fechaFundacion;
+    this.ultimoUsuario = ultimoUsuario;
   }
 
 }

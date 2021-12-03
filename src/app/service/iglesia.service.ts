@@ -9,6 +9,7 @@ import { Iglesia } from '../models/iglesia';
 })
 export class IglesiaService {
 
+   //Url obtenida de la variable de enviroments
   iglesiaUrl = environment.iglesiaUrl;
 
   constructor(private httpClient: HttpClient) { }

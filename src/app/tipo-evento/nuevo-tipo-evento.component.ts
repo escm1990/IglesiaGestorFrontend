@@ -1,3 +1,4 @@
+import { TokenService } from './../service/token.service';
 import { Iglesia } from './../models/iglesia';
 import { IglesiaService } from './../service/iglesia.service';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,7 @@ export class NuevoTipoEventoComponent implements OnInit {
   fecha: number;
   formTipoEvento: FormGroup;
   events: string[] = [];
-  fechaTemp: Date;
+
   iglesia_id: number |any;
   Iglesias: Iglesia[] = [];
 
@@ -34,7 +35,8 @@ export class NuevoTipoEventoComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private iglesiaService: IglesiaService
+    private iglesiaService: IglesiaService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class NuevoTipoEventoComponent implements OnInit {
   onCreate(): void{
     this.descripcion = this.formTipoEvento.get('descripcion')?.value;
 
-    const tipoEvento = new TipoEvento(this.descripcion,this.estado,this.iglesia_id);
+    const tipoEvento = new TipoEvento(this.descripcion,this.estado,this.iglesia_id, this.tokenService.getUsername());
     this.tipoEventoService.guardar(tipoEvento).subscribe(
       data => {
         this.toastr.success('Tipo Evento Creado', 'OK', {

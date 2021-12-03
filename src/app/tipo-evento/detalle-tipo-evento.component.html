@@ -1,1 +1,21 @@
-<p>detalle-tipo-evento works!</p>
+<div class="container">
+  <div class="row mt-5" *ngIf="tipoEvento">
+    <div class="col-md-8 mx-auto">
+
+            <div class="card-header text-center">
+              Detalle
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>ID: </b>{{tipoEvento.id}}</li>
+              <li class="list-group-item"><b>Descripci&oacute;n: </b>{{tipoEvento.descripcion}}</li>
+              <li class="list-group-item"><b>Iglesia: </b>{{nombreIglesia}}</li>
+              <li class="list-group-item"><b>Estado: </b>{{tipoEvento.estado}}</li>
+              <br>
+            </ul>
+            <div class="card-footer">
+                <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </div>
+
+    </div>
+</div>
+</div>
