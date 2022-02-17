@@ -1,8 +1,8 @@
-import { environment } from './../../environments/environment';
+import { environment } from '../../../environments/environment';
 
-import { Iglesia } from './../models/iglesia';
+import { Iglesia } from '../../models/iglesia';
 import { ToastrService } from 'ngx-toastr';
-import { IglesiaService } from './../service/iglesia.service';
+import { IglesiaService } from '../../service/iglesia.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 

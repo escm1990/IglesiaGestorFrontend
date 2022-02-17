@@ -1,14 +1,14 @@
-import { TokenService } from './../service/token.service';
+import { TokenService } from '../../service/token.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { IglesiaService } from './../service/iglesia.service';
+import { IglesiaService } from '../../service/iglesia.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Iglesia } from '../models/iglesia';
+import { Iglesia } from '../../models/iglesia';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import * as data from '../../assets/paises.json';
-import { UploadFilesService } from './../service/upload-files.service';
+import * as data from 'src/assets/paises.json';
+import { UploadFilesService } from '../../service/upload-files.service';
 import { Observable } from 'rxjs';
 
 export class PaisesTel {

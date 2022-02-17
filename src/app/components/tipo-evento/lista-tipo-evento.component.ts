@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
-import { TipoEventoService } from './../service/tipo-evento.service';
-import { TipoEvento } from './../models/tipo-evento';
+import { TipoEventoService } from './../../service/tipo-evento.service';
+import { TipoEvento } from './../../models/tipo-evento';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

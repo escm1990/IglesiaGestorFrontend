@@ -1,15 +1,15 @@
-import { TokenService } from './../service/token.service';
-import { environment } from './../../environments/environment';
+import { TokenService } from '../../service/token.service';
+import { environment } from '../../../environments/environment';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { UploadFilesService } from './../service/upload-files.service';
+import { UploadFilesService } from '../../service/upload-files.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Iglesia } from './../models/iglesia';
+import { Iglesia } from '../../models/iglesia';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IglesiaService } from './../service/iglesia.service';
+import { IglesiaService } from '../../service/iglesia.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as data from '../../assets/paises.json';
+import * as data from 'src/assets/paises.json';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 

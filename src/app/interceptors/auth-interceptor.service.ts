@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class IglesiaInterceptorService implements HttpInterceptor {
+export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private tokenService: TokenService) { }
 
@@ -20,4 +20,4 @@ export class IglesiaInterceptorService implements HttpInterceptor {
   }
 }
 
-export const interceptorProvider = [{provide: HTTP_INTERCEPTORS, useClass: IglesiaInterceptorService, multi: true}];
+export const interceptorProvider = [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}];

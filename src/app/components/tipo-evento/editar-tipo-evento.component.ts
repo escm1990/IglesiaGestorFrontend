@@ -1,14 +1,14 @@
-import { TokenService } from './../service/token.service';
+import { TokenService } from './../../service/token.service';
 import { map, startWith } from 'rxjs/operators';
-import { Iglesia } from './../models/iglesia';
-import { IglesiaService } from './../service/iglesia.service';
+import { Iglesia } from './../../models/iglesia';
+import { IglesiaService } from './../../service/iglesia.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { TipoEventoService } from './../service/tipo-evento.service';
+import { TipoEventoService } from './../../service/tipo-evento.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TipoEvento } from '../models/tipo-evento';
+import { TipoEvento } from '../../models/tipo-evento';
 
 @Component({
   selector: 'app-editar-tipo-evento',

@@ -1,9 +1,9 @@
-import { IglesiaService } from './../service/iglesia.service';
+import { IglesiaService } from './../../service/iglesia.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TipoEventoService } from './../service/tipo-evento.service';
+import { TipoEventoService } from './../../service/tipo-evento.service';
 import { Component, OnInit } from '@angular/core';
-import { TipoEvento } from '../models/tipo-evento';
+import { TipoEvento } from '../../models/tipo-evento';
 
 @Component({
   selector: 'app-detalle-tipo-evento',

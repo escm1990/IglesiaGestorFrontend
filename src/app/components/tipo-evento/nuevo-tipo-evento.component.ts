@@ -1,12 +1,12 @@
-import { TokenService } from './../service/token.service';
-import { Iglesia } from './../models/iglesia';
-import { IglesiaService } from './../service/iglesia.service';
+import { TokenService } from './../../service/token.service';
+import { Iglesia } from './../../models/iglesia';
+import { IglesiaService } from './../../service/iglesia.service';
 import { ToastrService } from 'ngx-toastr';
-import { TipoEventoService } from './../service/tipo-evento.service';
+import { TipoEventoService } from './../../service/tipo-evento.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TipoEvento } from '../models/tipo-evento';
+import { TipoEvento } from '../../models/tipo-evento';
 import { Observable} from 'rxjs';
 import { map, startWith} from 'rxjs/operators';
 

@@ -1,0 +1,93 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Editar Iglesia<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+
+    <div class="container" *ngIf="iglesia">
+      <div class="row mt-5">
+          <div class="col-md-8 mx-auto">
+              <form novalidate  (ngSubmit)="onUpdate()"  [formGroup]="formIglesia">
+                <div class="form-group">
+                  <mat-label>Nombre </mat-label>
+                  <input name="nombre"  class="form-control" formControlName="nombre" type="text" />
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="formIglesia.get('nombre')?.hasError('required') && formIglesia.get('nombre')?.touched">
+                  Campo requerido
+                </div>
+                <div class="form-group">
+                  <mat-label>Direcci&oacute;n </mat-label>
+                  <input name="direccion"  class="form-control" formControlName="direccion" type="text" />
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="formIglesia.get('direccion')?.hasError('required') && formIglesia.get('direccion')?.touched">
+                  Campo requerido
+                </div>
+                <div class="form-group">
+                  <mat-label>Pa&iacute;s</mat-label>
+                  <mat-select  matNativeControl class="form-control" formControlName="pais" name="pais"
+                    required (selectionChange)="onChangeSelect($event.value)" >
+                    <mat-option *ngFor="let obj of paisesArray" value={{obj.name_es}}>
+                      {{obj.name_es}} ({{obj.dial_code}})
+                    </mat-option>
+                  </mat-select >
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="formIglesia.get('pais')?.hasError('required') && formIglesia.get('pais')?.touched">
+                  Campo requerido
+                </div>
+                <div class="form-group">
+                  <div class="form-group">
+                    <mat-label>Tel&eacute;fono</mat-label>
+                    <input name="telefono"  class="form-control" formControlName="telefono" type="number" />
+                  </div>
+                </div>
+                <div class="alert alert-danger"
+                  *ngIf="formIglesia.get('telefono')?.hasError('required') && formIglesia.get('telefono')?.touched">
+                  Campo requerido
+                </div>
+                <div class="form-group">
+                  <mat-label>Fecha Fundaci&oacute;n </mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="fechaFormulario"
+                  class="form-control" (dateChange)="onDate($event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker disabled="false"></mat-datepicker>
+                </div>
+                <div class="alert alert-danger"
+                *ngIf="formIglesia.get('fechaFormulario')?.hasError('required') && formIglesia.get('fechaFormulario')?.touched">
+                Campo requerido
+                </div>
+                  <div class="form-group">
+                    <mat-label>Correo </mat-label>
+                    <input name="correo"  class="form-control" formControlName="correo" type="email" />
+                  </div>
+                <div class="alert alert-danger"
+                  *ngIf="formIglesia.get('correo')?.hasError('email')">
+                    Escriba un email v&aacute;lido
+                </div>
+                <div class="form-group">
+                  <mat-label>Logo </mat-label>
+                   <img [src]="urlImagen" width="200px" height="200px"/>
+                   <br>
+                   <input type="file" class="form-control" formControlName="logo" (change)="cargarImagen($event)"/>
+                </div>
+                <br>
+                <div class="form-group">
+                  <mat-label>Estado</mat-label>
+                  <mat-select  matNativeControl class="form-control" formControlName="estado" name="estado">
+                    <mat-option value="ACTIVO">ACTIVO</mat-option>
+                    <mat-option value="INACTIVO">INACTIVO</mat-option>
+                  </mat-select >
+                </div>
+                <button class="btn btn-outline-success btn-block" [disabled]="formIglesia.invalid">
+                  <i class="fas fa-pencil-alt"></i> Actualizar</button>
+              <button class="btn btn-outline-primary btn-block" (click)="volver()">
+                  <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+              </form>
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
