@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -31,17 +30,22 @@ import { MatInputModule } from '@angular/material/input';
 
 import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
-import { NuevoIglesiaComponent } from './iglesia/nuevo-iglesia.component';
-import { DetalleIglesiaComponent } from './iglesia/detalle-iglesia.component';
-import { ListaIglesiaComponent } from './iglesia/lista-iglesia.component';
-import { EditarIglesiaComponent } from './iglesia/editar-iglesia.component';
-import { interceptorProvider } from './interceptors/iglesia-interceptor.service';
+import { NuevoIglesiaComponent } from './components/iglesia/nuevo-iglesia.component';
+import { DetalleIglesiaComponent } from './components/iglesia/detalle-iglesia.component';
+import { ListaIglesiaComponent } from './components/iglesia/lista-iglesia.component';
+import { EditarIglesiaComponent } from './components/iglesia/editar-iglesia.component';
+import { interceptorProvider } from './interceptors/auth-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadFilesComponent } from './upload-files/upload-files.component';
-import { ListaTipoEventoComponent } from './tipo-evento/lista-tipo-evento.component';
-import { NuevoTipoEventoComponent } from './tipo-evento/nuevo-tipo-evento.component';
-import { EditarTipoEventoComponent } from './tipo-evento/editar-tipo-evento.component';
-import { DetalleTipoEventoComponent } from './tipo-evento/detalle-tipo-evento.component';
+import { ListaTipoEventoComponent } from './components/tipo-evento/lista-tipo-evento.component';
+import { NuevoTipoEventoComponent } from './components/tipo-evento/nuevo-tipo-evento.component';
+import { EditarTipoEventoComponent } from './components/tipo-evento/editar-tipo-evento.component';
+import { DetalleTipoEventoComponent } from './components/tipo-evento/detalle-tipo-evento.component';
+import { ListaTipoPersonaComponent } from './components/tipo-persona/lista-tipo-persona.component';
+import { DetalleTipoPersonaComponent } from './components/tipo-persona/detalle-tipo-persona.component';
+import { EditarTipoPersonaComponent } from './components/tipo-persona/editar-tipo-persona.component';
+import { NuevoTipoPersonaComponent } from './components/tipo-persona/nuevo-tipo-persona.component';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { DetalleTipoEventoComponent } from './tipo-evento/detalle-tipo-evento.co
     ListaTipoEventoComponent,
     NuevoTipoEventoComponent,
     EditarTipoEventoComponent,
-    DetalleTipoEventoComponent
+    DetalleTipoEventoComponent,
+    ListaTipoPersonaComponent,
+    DetalleTipoPersonaComponent,
+    EditarTipoPersonaComponent,
+    NuevoTipoPersonaComponent
   ],
   imports: [
     BrowserModule,
