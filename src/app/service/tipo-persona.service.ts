@@ -10,7 +10,6 @@ import { TipoPersona } from '../models/tipo-persona';
 })
 export class TipoPersonaService {
 
-
   // Url obtenida de la variable de enviroments
   TipoPersonaUrl = environment.tipoPersonaUrl;
 
@@ -36,7 +35,4 @@ export class TipoPersonaService {
     return this.httpClient.delete<any>(this.TipoPersonaUrl + `eliminar/${id}`);
   }
 
-  public listarPorIglesia(id: number) : Observable<TipoPersona[]>{
-    return this.httpClient.get<TipoPersona[]>(this.TipoPersonaUrl+`listar/iglesia/${id}`);
-  }
 }

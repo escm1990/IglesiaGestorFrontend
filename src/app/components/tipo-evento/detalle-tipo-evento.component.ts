@@ -28,7 +28,6 @@ export class DetalleTipoEventoComponent implements OnInit {
     this.tipoEventoService.detalle(id).subscribe(
       data =>{
         this.tipoEvento = data;
-        this.obtenerIglesia(this.tipoEvento.iglesia_id);
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Error (Detalle1)', {
@@ -43,18 +42,5 @@ export class DetalleTipoEventoComponent implements OnInit {
     this.router.navigate(['/dashboard/tipo_evento/listar']);
   }
 
-  obtenerIglesia(id: number){
-    this.iglesiaService.detalle(this.tipoEvento.iglesia_id).subscribe(
-      data =>{
-        this.nombreIglesia = data.nombre.toString();
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Error (Detalle2)', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
-        this.volver();
-      }
-    );
-  }
 
 }

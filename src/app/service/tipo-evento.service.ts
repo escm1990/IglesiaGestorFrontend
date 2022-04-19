@@ -34,7 +34,4 @@ export class TipoEventoService {
     return this.httpClient.delete<any>(this.TipoEventoUrl + `eliminar/${id}`);
   }
 
-  public listarPorIglesia(id: number) : Observable<TipoEvento[]>{
-    return this.httpClient.get<TipoEvento[]>(this.TipoEventoUrl+`listar/iglesia/${id}`);
-  }
 }

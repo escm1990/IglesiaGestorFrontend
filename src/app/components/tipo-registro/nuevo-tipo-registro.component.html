@@ -1,0 +1,38 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Nuevo Tipo Registro <i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+    <div class="container">
+      <div class="row mt-5">
+          <div class="col-md-8 mx-auto">
+            <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formTipoRegistro">
+              <div class="form-group">
+                <mat-label>Descripci&oacute;n </mat-label>
+                <input name="descripcion"  class="form-control" formControlName="descripcion" type="text" />
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="formTipoRegistro.get('descripcion')?.hasError('required') && formTipoRegistro.get('descripcion')?.touched">
+                Campo requerido
+              </div>
+
+              <div class="form-group">
+                <mat-label>Tipo Contabilizaci&oacute;n</mat-label>
+                <mat-select  matNativeControl class="form-control" formControlName="tipoContabilizacion" name="tipoContabilizacion">
+                  <mat-option value="INGRESO">INGRESO</mat-option>
+                  <mat-option value="EGRESO">EGRESO</mat-option>
+                </mat-select >
+              </div>
+
+              <br>
+
+              <button class="btn btn-outline-success btn-block" [disabled]="formTipoRegistro.invalid">
+                <i class="fas fa-plus-circle"></i> Crear</button>
+              <button class="btn btn-outline-primary btn-block" (click)="volver()">
+                <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </form>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>

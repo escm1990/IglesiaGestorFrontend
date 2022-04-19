@@ -1,20 +1,20 @@
+import { TipoRegistro } from './../../models/tipo-registro';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TipoPersonaService } from './../../service/tipo-persona.service';
-import { TipoPersona } from './../../models/tipo-persona';
+import { TipoRegistroService } from './../../service/tipo-registro.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-detalle-tipo-persona',
-  templateUrl: './detalle-tipo-persona.component.html',
-  styleUrls: ['./detalle-tipo-persona.component.scss']
+  selector: 'app-detalle-tipo-registro',
+  templateUrl: './detalle-tipo-registro.component.html',
+  styleUrls: ['./detalle-tipo-registro.component.scss']
 })
-export class DetalleTipoPersonaComponent implements OnInit {
+export class DetalleTipoRegistroComponent implements OnInit {
 
-  tipoPersona: TipoPersona;
+  tipoRegistro: TipoRegistro;
 
   constructor(
-    private tipoPersonaService: TipoPersonaService,
+    private tipoRegistroService: TipoRegistroService,
     private activateRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
@@ -22,9 +22,9 @@ export class DetalleTipoPersonaComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activateRoute.snapshot.params.id;
-    this.tipoPersonaService.detalle(id).subscribe(
+    this.tipoRegistroService.detalle(id).subscribe(
       data => {
-        this.tipoPersona = data;
+        this.tipoRegistro = data;
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Error (Detalle1)',
@@ -36,10 +36,9 @@ export class DetalleTipoPersonaComponent implements OnInit {
     )
   }
 
-
-
   volver(): void {
-    this.router.navigate(['/dashboard/tipo_persona/listar']);
+    this.router.navigate(['/dashboard/tipo_registro/listar']);
   }
 
 }
+

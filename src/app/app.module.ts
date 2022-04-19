@@ -45,6 +45,10 @@ import { ListaTipoPersonaComponent } from './components/tipo-persona/lista-tipo-
 import { DetalleTipoPersonaComponent } from './components/tipo-persona/detalle-tipo-persona.component';
 import { EditarTipoPersonaComponent } from './components/tipo-persona/editar-tipo-persona.component';
 import { NuevoTipoPersonaComponent } from './components/tipo-persona/nuevo-tipo-persona.component';
+import { NuevoTipoRegistroComponent } from './components/tipo-registro/nuevo-tipo-registro.component';
+import { EditarTipoRegistroComponent } from './components/tipo-registro/editar-tipo-registro.component';
+import { ListaTipoRegistroComponent } from './components/tipo-registro/lista-tipo-registro.component';
+import { DetalleTipoRegistroComponent } from './components/tipo-registro/detalle-tipo-registro.component';
 
 
 @NgModule({
@@ -68,7 +72,11 @@ import { NuevoTipoPersonaComponent } from './components/tipo-persona/nuevo-tipo-
     ListaTipoPersonaComponent,
     DetalleTipoPersonaComponent,
     EditarTipoPersonaComponent,
-    NuevoTipoPersonaComponent
+    NuevoTipoPersonaComponent,
+    NuevoTipoRegistroComponent,
+    EditarTipoRegistroComponent,
+    ListaTipoRegistroComponent,
+    DetalleTipoRegistroComponent
   ],
   imports: [
     BrowserModule,

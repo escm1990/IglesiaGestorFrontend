@@ -22,11 +22,6 @@ export class EditarTipoEventoComponent implements OnInit {
   tipoEvento: TipoEvento;
   formTipoEvento: FormGroup;
 
-  iglesia: Iglesia;
-  nombreIglesia: String  = '';
-  iglesia_id: number | any;
-  Iglesias: Iglesia[];
-
   myControl =  new FormControl();
   options: string[] = [];
   filteredOptions: Observable<string[]>;
@@ -38,14 +33,12 @@ export class EditarTipoEventoComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private iglesiaService: IglesiaService,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenService
     ) { }
 
   ngOnInit(): void {
 
-    this.cargarIglesias();
     this.cargarDetalle();
 
   }
@@ -59,18 +52,9 @@ export class EditarTipoEventoComponent implements OnInit {
         this.tipoEvento = data;
         this.estado = this.tipoEvento.estado;
         this.descripcion = this.tipoEvento.descripcion;
-        this.iglesia_id = this.tipoEvento.iglesia_id;
-        this.obtenerIglesia(this.iglesia_id);
       //  console.log(this.estado+" "+this.descripcion+" "+this.iglesia_id+" "+this.nombreIglesia);
 
         this.buildForm();
-
-        //Para administrar el listado del AutoComplete
-        this.controlAC = this.formTipoEvento.controls['iglesiaAC'];
-        this.filteredOptions = this.controlAC.valueChanges.pipe(
-          startWith(''),
-          map(value => this._filter(value)),
-          );
 
       },
       err => {
@@ -82,36 +66,10 @@ export class EditarTipoEventoComponent implements OnInit {
     );
   }
 
-  obtenerIglesia(id: number){
-    //console.log("obtenerIglesia "+id);
-
-    this.Iglesias.forEach(element => {
-      if(element.id === id){
-        this.nombreIglesia = element.nombre;
-      }
-    });
-  }
-
-  cargarIglesias(): void {
-    this.iglesiaService.listar().subscribe(
-      data => {
-        this.Iglesias = data;
-        // Llenar un array con otro array
-        this.Iglesias.forEach(element => {
-          //console.log(element.nombre.toString());
-          this.options.push(element.nombre.toString());
-        });
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
 
   buildForm(){
     this.formTipoEvento = this.formBuilder.group({
       descripcion: new FormControl(this.descripcion,[Validators.required]),
-      iglesiaAC: new FormControl(this.nombreIglesia),
       estado: new FormControl(this.estado)
     });
   }
@@ -121,7 +79,6 @@ export class EditarTipoEventoComponent implements OnInit {
 
     this.tipoEvento.descripcion = this.formTipoEvento.get('descripcion')?.value;
     this.tipoEvento.estado = this.formTipoEvento.get('estado')?.value;
-    this.tipoEvento.iglesia_id = this.iglesia_id;
     this.tipoEvento.ultimoUsuario =  this.tokenService.getUsername();
 
     this.tipoEventoService.modificar(id, this.tipoEvento).subscribe(
@@ -144,17 +101,4 @@ export class EditarTipoEventoComponent implements OnInit {
     this.router.navigate(['/dashboard/tipo_evento/listar']);
   }
 
-  onChangeSelect(event: any) : void{
-    for (let elemento of this.Iglesias){
-      if(elemento.nombre === event){
-        this.iglesia_id = elemento.id;
-      }
-    }
-    //console.log("onChangeSelect "+this.iglesia_id);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
 }

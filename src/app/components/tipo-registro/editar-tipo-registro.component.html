@@ -1,19 +1,27 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Editar Tipo Persona <i class="fas fa-person-carry    "></i></div>
+  <div class="d-flex page__box p-3 mt-2">Editar Tipo Registro <i class="fas fa-person-carry    "></i></div>
   <div class="page__content shadow p-3 position-relative">
 
 
-<div class="container" *ngIf="tipoPersona">
+<div class="container" *ngIf="tipoRegistro">
   <div class="row mt-5">
       <div class="col-md-8 mx-auto">
-        <form novalidate (ngSubmit)="onUpdate()" [formGroup]="formTipoPersona">
+        <form novalidate (ngSubmit)="onUpdate()" [formGroup]="formTipoRegistro">
           <div class="form-group">
             <mat-label>Descripci&oacute;n </mat-label>
             <input formControlName="descripcion" name="descripcion" class="form-control" type="text" />
           </div>
           <div class="alert alert-danger"
-            *ngIf="formTipoPersona.get('descripcion')?.hasError('required') && formTipoPersona.get('descripcion')?.touched">
+            *ngIf="formTipoRegistro.get('descripcion')?.hasError('required') && formTipoRegistro.get('descripcion')?.touched">
             Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Estado</mat-label>
+            <mat-select  matNativeControl class="form-control" formControlName="tipoContabilizacion" name="tipoContabilizacion">
+              <mat-option value="INGRESO">INGRESO</mat-option>
+              <mat-option value="EGRESO">EGRESO</mat-option>
+            </mat-select >
           </div>
 
           <div class="form-group">
@@ -25,7 +33,7 @@
           </div>
           <br>
 
-          <button class="btn btn-outline-success btn-block" [disabled]="formTipoPersona.invalid">
+          <button class="btn btn-outline-success btn-block" [disabled]="formTipoRegistro.invalid">
             <i class="fas fa-pencil-alt"></i> Actualizar</button>
           <button class="btn btn-outline-primary btn-block" (click)="volver()">
             <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>

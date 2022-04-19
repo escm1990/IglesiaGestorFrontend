@@ -1,3 +1,7 @@
+import { EditarTipoRegistroComponent } from './components/tipo-registro/editar-tipo-registro.component';
+import { NuevoTipoRegistroComponent } from './components/tipo-registro/nuevo-tipo-registro.component';
+import { DetalleTipoRegistroComponent } from './components/tipo-registro/detalle-tipo-registro.component';
+import { ListaTipoRegistroComponent } from './components/tipo-registro/lista-tipo-registro.component';
 import { EditarTipoPersonaComponent } from './components/tipo-persona/editar-tipo-persona.component';
 import { NuevoTipoPersonaComponent } from './components/tipo-persona/nuevo-tipo-persona.component';
 import { DetalleTipoPersonaComponent } from './components/tipo-persona/detalle-tipo-persona.component';
@@ -19,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IglesiaGuardService as guard_iglesia} from './guards/iglesia-guard.service';
 import { TipoEventoGuardService as guard_tipo_evento} from './guards/tipo-evento-guard.service';
 import { TipoPersonaGuardService as guard_tipo_persona } from './guards/tipo-persona-guard.service';
+import { TipoRegistroGuardService as guard_tipo_registro} from './guards/tipo-registro-guard.service';
 
 const routes: Routes = [
 
@@ -45,6 +50,11 @@ const routes: Routes = [
     {path:'tipo_persona/detalle/:id', component:DetalleTipoPersonaComponent,  canActivate: [guard_tipo_persona], data: { expectedRol: ['admin'] }},
     {path:'tipo_persona/nuevo', component:NuevoTipoPersonaComponent,  canActivate: [guard_tipo_persona], data: { expectedRol: ['admin'] }},
     {path:'tipo_persona/editar/:id', component:EditarTipoPersonaComponent,  canActivate: [guard_tipo_persona], data: { expectedRol: ['admin'] }},
+    //Tipo Registro Movimiento
+    {path:'tipo_registro/listar', component:ListaTipoRegistroComponent, canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
+    {path:'tipo_registro/detalle/:id', component:DetalleTipoRegistroComponent,  canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
+    {path:'tipo_registro/nuevo', component:NuevoTipoRegistroComponent,  canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
+    {path:'tipo_registro/editar/:id', component:EditarTipoRegistroComponent,  canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
   ]
   },
 

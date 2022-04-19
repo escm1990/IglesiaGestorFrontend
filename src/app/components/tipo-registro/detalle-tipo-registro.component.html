@@ -1,0 +1,25 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Detalle Tipo Registro <i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+    <div class="container">
+      <div class="row mt-5" *ngIf="tipoRegistro">
+        <div class="col-md-8 mx-auto">
+
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>ID: </b>{{tipoRegistro.id}}</li>
+                  <li class="list-group-item"><b>Descripci&oacute;n: </b>{{tipoRegistro.descripcion}}</li>
+                  <li class="list-group-item"><b>Contabilizaci&oacute;n: </b>{{tipoRegistro.tipoContabilizacion}}</li>
+                  <li class="list-group-item"><b>Estado: </b>{{tipoRegistro.estado}}</li>
+                  <br>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+                </div>
+
+        </div>
+    </div>
+    </div>
+
+  </div>
+</div>
