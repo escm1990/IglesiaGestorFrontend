@@ -3,7 +3,6 @@ import { IglesiaService } from '../../service/iglesia.service';
 import { Component, OnInit } from '@angular/core';
 import { Iglesia } from '../../models/iglesia';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-iglesia',

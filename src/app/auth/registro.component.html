@@ -34,6 +34,25 @@
                       [(ngModel)] ="correo" required>
                   </div>
 
+
+                  <div class="form-group">
+                    <label for="usuario">Iglesia</label>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Iglesia</mat-label>
+                      <input type="text"
+                             placeholder="--Seleccione--"
+                             aria-label="Iglesia"
+                             matInput
+                             [formControl]="myControl"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeSelect($event.option.value)">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field> </div>
+
+
                   <br>
                   <div class="form-group">
                     <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
