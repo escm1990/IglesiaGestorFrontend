@@ -1,3 +1,7 @@
+import { EditarMiembroComponent } from './components/miembro/editar-miembro.component';
+import { NuevoMiembroComponent } from './components/miembro/nuevo-miembro.component';
+import { DetalleMiembroComponent } from './components/miembro/detalle-miembro.component';
+import { ListaMiembroComponent } from './components/miembro/lista-miembro.component';
 import { EditarTipoRegistroComponent } from './components/tipo-registro/editar-tipo-registro.component';
 import { NuevoTipoRegistroComponent } from './components/tipo-registro/nuevo-tipo-registro.component';
 import { DetalleTipoRegistroComponent } from './components/tipo-registro/detalle-tipo-registro.component';
@@ -24,6 +28,7 @@ import { IglesiaGuardService as guard_iglesia} from './guards/iglesia-guard.serv
 import { TipoEventoGuardService as guard_tipo_evento} from './guards/tipo-evento-guard.service';
 import { TipoPersonaGuardService as guard_tipo_persona } from './guards/tipo-persona-guard.service';
 import { TipoRegistroGuardService as guard_tipo_registro} from './guards/tipo-registro-guard.service';
+import { MiembroGuardService as guard_miembro } from './guards/miembro-guard.service';
 
 const routes: Routes = [
 
@@ -55,6 +60,11 @@ const routes: Routes = [
     {path:'tipo_registro/detalle/:id', component:DetalleTipoRegistroComponent,  canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
     {path:'tipo_registro/nuevo', component:NuevoTipoRegistroComponent,  canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
     {path:'tipo_registro/editar/:id', component:EditarTipoRegistroComponent,  canActivate: [guard_tipo_registro], data: { expectedRol: ['admin'] }},
+    //Miembro
+    {path:'miembro/listar', component:ListaMiembroComponent, canActivate: [guard_miembro], data: { expectedRol: ['admin', 'user'] }},
+    {path:'miembro/detalle/:id', component:DetalleMiembroComponent,  canActivate: [guard_miembro], data: { expectedRol: ['admin', 'user'] }},
+    {path:'miembro/nuevo', component:NuevoMiembroComponent,  canActivate: [guard_miembro], data: { expectedRol: ['admin', 'user' ]}},
+    {path:'miembro/editar/:id', component:EditarMiembroComponent,  canActivate: [guard_miembro], data: { expectedRol: ['admin', 'user'] }},
   ]
   },
 

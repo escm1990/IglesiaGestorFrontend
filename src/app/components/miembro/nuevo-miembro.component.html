@@ -1,0 +1,163 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Nuevo Miembro<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-md-8 mx-auto">
+        <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formMiembro">
+
+          <div class="form-group">
+            <mat-label>Nombre </mat-label>
+            <input name="nombre"  class="form-control" formControlName="nombre" type="text" />
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('nombre')?.hasError('required') && formMiembro.get('nombre')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Apellido </mat-label>
+            <input name="apellido"  class="form-control" formControlName="apellido" type="text" />
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('apellido')?.hasError('required') && formMiembro.get('apellido')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Sexo</mat-label>
+            <mat-select  matNativeControl class="form-control" formControlName="sexo" name="sexo">
+              <mat-option value="0">--SELECCIONE--</mat-option>
+              <mat-option value="MASCULINO">MASCULINO</mat-option>
+              <mat-option value="FEMENINO">FEMENINO</mat-option>
+            </mat-select >
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('sexo')?.hasError('required') && formMiembro.get('sexo')?.touched">
+            Campo requerido
+            </div>
+
+          <div class="form-group">
+            <mat-label>Fecha Nacimiento </mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento"
+            class="form-control" (dateChange)="onDate($event,1)">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+          </div>
+          <div class="alert alert-danger"
+          *ngIf="formMiembro.get('fechaNacimiento')?.hasError('required') && formMiembro.get('fechaNacimiento')?.touched">
+          Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Direcci&oacute;n </mat-label>
+            <input name="direccion"  class="form-control" formControlName="direccion" type="text" />
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('direccion')?.hasError('required') && formMiembro.get('direccion')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <div class="form-group">
+              <mat-label>Tel&eacute;fono Fijo</mat-label>
+              <input name="telefonoFijo"  class="form-control" formControlName="telefonoFijo" type="number" />
+            </div>
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('telefonoFijo')?.hasError('required') && formMiembro.get('telefonoFijo')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <div class="form-group">
+              <mat-label>Tel&eacute;fono M&oacute;vil</mat-label>
+              <input name="telefonoMovil"  class="form-control" formControlName="telefonoMovil" type="number" />
+            </div>
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('telefonoMovil')?.hasError('required') && formMiembro.get('telefonoMovil')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Correo </mat-label>
+            <input name="correo"  class="form-control" formControlName="correo" type="email" />
+          </div>
+        <div class="alert alert-danger"
+          *ngIf="formMiembro.get('correo')?.hasError('email')">
+            Escriba un email v&aacute;lido
+        </div>
+
+        <div class="form-group">
+          <mat-label>Estado Civil</mat-label>
+          <mat-select  matNativeControl class="form-control" formControlName="estadoCivil" name="estadoCivil">
+            <mat-option value="SOLTERO">SOLTERO</mat-option>
+            <mat-option value="CASADO">CASADO</mat-option>
+            <mat-option value="VIUDO">VIUDO</mat-option>
+            <mat-option value="DIVORCIADO">DIVORCIADO</mat-option>
+            <mat-option value="CONCUBINATO">CONCUBINATO</mat-option>
+          </mat-select >
+        </div>
+        <div class="alert alert-danger"
+          *ngIf="formMiembro.get('estadoCivil')?.hasError('required') && formMiembro.get('estadoCivil')?.touched">
+          Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Fecha Conversi&oacute;n </mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="fechaConversion"
+            class="form-control" (dateChange)="onDate($event,2)">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+          </div>
+          <div class="alert alert-danger"
+          *ngIf="formMiembro.get('fechaConversion')?.hasError('required') && formMiembro.get('fechaConversion')?.touched">
+          Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Fecha Bautismo </mat-label>
+            <input matInput [matDatepicker]="picker3" formControlName="fechaBautismo"
+            class="form-control" (dateChange)="onDate($event,3)">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3 disabled="false"></mat-datepicker>
+          </div>
+          <div class="alert alert-danger"
+          *ngIf="formMiembro.get('fechaBautismo')?.hasError('required') && formMiembro.get('fechaBautismo')?.touched">
+          Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Tipo Persona</mat-label>
+            <mat-select  matNativeControl class="form-control" formControlName="tipo_persona_id" name="tipo_persona_id" required>
+               <mat-option *ngFor="let tipo of TiposPersona" [value]="tipo.id">
+                {{tipo.descripcion}}
+              </mat-option>
+            </mat-select >
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formMiembro.get('tipo_persona_id')?.hasError('required') && formMiembro.get('tipo_persona_id')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Foto </mat-label>
+            <input type="file" class="form-control" formControlName="foto" (change)="cargarImagen($event)"/>
+          </div>
+
+          <button class="btn btn-outline-success btn-block" [disabled]="formMiembro.invalid">
+            <i class="fas fa-plus-circle"></i> Crear</button>
+          <button class="btn btn-outline-primary btn-block" (click)="volver()">
+            <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+        </form>
+      </div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+

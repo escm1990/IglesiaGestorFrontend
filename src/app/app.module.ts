@@ -49,6 +49,10 @@ import { NuevoTipoRegistroComponent } from './components/tipo-registro/nuevo-tip
 import { EditarTipoRegistroComponent } from './components/tipo-registro/editar-tipo-registro.component';
 import { ListaTipoRegistroComponent } from './components/tipo-registro/lista-tipo-registro.component';
 import { DetalleTipoRegistroComponent } from './components/tipo-registro/detalle-tipo-registro.component';
+import { DetalleMiembroComponent } from './components/miembro/detalle-miembro.component';
+import { EditarMiembroComponent } from './components/miembro/editar-miembro.component';
+import { ListaMiembroComponent } from './components/miembro/lista-miembro.component';
+import { NuevoMiembroComponent } from './components/miembro/nuevo-miembro.component';
 
 
 @NgModule({
@@ -76,7 +80,11 @@ import { DetalleTipoRegistroComponent } from './components/tipo-registro/detalle
     NuevoTipoRegistroComponent,
     EditarTipoRegistroComponent,
     ListaTipoRegistroComponent,
-    DetalleTipoRegistroComponent
+    DetalleTipoRegistroComponent,
+    DetalleMiembroComponent,
+    EditarMiembroComponent,
+    ListaMiembroComponent,
+    NuevoMiembroComponent
   ],
   imports: [
     BrowserModule,
