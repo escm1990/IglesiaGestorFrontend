@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
+const IGLESIA_KEY = 'AuthIglesia';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,15 @@ export class TokenService {
       });
     }
     return this.roles;
+  }
+
+  public setUserIglesiaId(iglesiaid: number | any): void{
+    window.sessionStorage.removeItem(IGLESIA_KEY);
+    window.sessionStorage.setItem(IGLESIA_KEY, iglesiaid);
+  }
+
+  public getUserIglesiaId(): string{
+    return sessionStorage.getItem(IGLESIA_KEY) || '';
   }
 
   public logOut(): void{

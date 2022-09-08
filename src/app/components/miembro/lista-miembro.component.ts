@@ -14,6 +14,8 @@ export class ListaMiembroComponent implements OnInit {
   Miembros: Miembro[] = [];
   roles: string[];
   isAdmin =  false;
+  iglesiaTemp: string;
+  iglesia_id: number;
 
   constructor(
     private miembroService: MiembroService,
@@ -35,14 +37,28 @@ export class ListaMiembroComponent implements OnInit {
   }
 
   cargarMiembros(): void {
-    this.miembroService.listar().subscribe(
-      data => {
-        this.Miembros = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+
+    if(this.isAdmin){
+      this.miembroService.listar().subscribe(
+        data => {
+          this.Miembros = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } else {
+      this.iglesiaTemp = this.tokenService.getUserIglesiaId();
+      this.iglesia_id = +this.iglesiaTemp;
+      this.miembroService.listarIglesia(this.iglesia_id).subscribe(
+        data => {
+          this.Miembros = data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   borrar(id: number | any){

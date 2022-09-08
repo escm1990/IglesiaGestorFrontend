@@ -34,6 +34,7 @@ export class NuevoMiembroComponent implements OnInit {
   estado = 'ACTIVO';
   ultimoUsuario = '';
   iglesia_id: number;
+  getIglesia: string;
   tipo_persona_id: number;
 
   events: string[] = [];
@@ -93,14 +94,16 @@ export class NuevoMiembroComponent implements OnInit {
     this.nombre = this.formMiembro.get('nombre')?.value;
     this.apellido = this.formMiembro.get('apellido')?.value;
     this.direccion = this.formMiembro.get('direccion')?.value;
-    this.estadoCivil = this.formMiembro.get('estadoCivel')?.value;
+    this.estadoCivil = this.formMiembro.get('estadoCivil')?.value;
     this.correo =  this.formMiembro.get('correo')?.value;
     this.telefonoFijo =  this.formMiembro.get('telefonoFijo')?.value;
     this.telefonoMovil =  this.formMiembro.get('telefonoMovil')?.value;
     this.tipo_persona_id =  this.formMiembro.get('tipo_persona_id')?.value;
     this.sexo = this.formMiembro.get('sexo')?.value;
     this.foto = this.nombreArchivo;
-    this.iglesia_id = 2;
+
+    this.getIglesia = this.tokenService.getUserIglesiaId();
+    this.iglesia_id = +this.getIglesia; //conversión de string a number (+)
 
     const miembro = new Miembro(this.nombre, this.apellido, this.fechaNacimiento,
       this.sexo, this.estadoCivil, this.direccion, this.telefonoFijo, this.telefonoMovil,

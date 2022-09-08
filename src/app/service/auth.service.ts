@@ -4,6 +4,7 @@ import { NuevoUsuario } from './../models/nuevo-usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Usuarios } from '../models/usuarios';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class AuthService {
 
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO>{
     return this.httpClient.post<JwtDTO>(this.authUrl+'login',loginUsuario);
+  }
+
+  public user(user: String): Observable<Usuarios>{
+    return this.httpClient.get<Usuarios>(this.authUrl+ `user/${user}`);
   }
 
 }

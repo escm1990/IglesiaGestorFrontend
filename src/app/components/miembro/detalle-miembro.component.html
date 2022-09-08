@@ -1,1 +1,39 @@
-<p>detalle-miembro works!</p>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Detalle de Miembro<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+<div class="container">
+  <div class="row mt-5" *ngIf="miembro">
+    <div class="col-md-8 mx-auto">
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>ID: </b>{{miembro.id}}</li>
+              <li class="list-group-item"><b>Nombre: </b>{{miembro.nombre}}</li>
+              <li class="list-group-item"><b>Apellido: </b>{{miembro.apellido}}</li>
+              <li class="list-group-item"><b>Sexo: </b>{{miembro.sexo}}</li>
+              <li class="list-group-item"><b>Fecha Nacimiento: </b>{{fechaMostrarNacimiento}}</li>
+              <li class="list-group-item"><b>Direcci&oacute;n: </b>{{miembro.direccion}}</li>
+              <li class="list-group-item"><b>Tel&eacute;fono M&oacute;vil: </b>{{miembro.telefonoFijo}}</li>
+              <li class="list-group-item"><b>Tel&eacute;fono: </b>{{miembro.telefonoMovil}}</li>
+              <li class="list-group-item"><b>Correo: </b>{{miembro.correo}}</li>
+              <li class="list-group-item"><b>Estado Civil: </b>{{miembro.estadoCivil}}</li>
+              <li class="list-group-item"><b>Fecha Conversión: </b>{{fechaMostrarConversion}}</li>
+              <li class="list-group-item"><b>Fecha Bautismo: </b>{{fechaMostrarBautismo}}</li>
+              <li class="list-group-item"><b>Tipo Persona: </b>{{tipoPersonaMostrar}}</li>
+              <li class="list-group-item"><b>Logo: </b>
+                <br>
+                <img [src]="urlImagen" width="200px" height="200px">
+              </li>
+              <li class="list-group-item"><b>Estado: </b>{{miembro.estado}}</li>
+            </ul>
+            <div class="card-footer">
+                <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </div>
+
+    </div>
+</div>
+</div>
+
+
+  </div>
+</div>
