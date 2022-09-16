@@ -3,7 +3,7 @@ import { TokenService } from './../../service/token.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoRegistroService } from './../../service/tipo-registro.service';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -17,13 +17,13 @@ export class NuevoTipoRegistroComponent implements OnInit {
   tipoContabilizacion = '';
   estado = 'ACTIVO';
   fecha: number;
-  formTipoRegistro: FormGroup;
+  formTipoRegistro: UntypedFormGroup;
 
   constructor(
     private tipoRegistroService: TipoRegistroService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private tokenService: TokenService
   ) { }
 
@@ -33,8 +33,8 @@ export class NuevoTipoRegistroComponent implements OnInit {
 
   private buildForm(){
     this.formTipoRegistro = this.formBuilder.group({
-      descripcion: new FormControl('', [Validators.required]),
-      tipoContabilizacion: new FormControl('', [Validators.required])
+      descripcion: new UntypedFormControl('', [Validators.required]),
+      tipoContabilizacion: new UntypedFormControl('', [Validators.required])
     });
   }
 

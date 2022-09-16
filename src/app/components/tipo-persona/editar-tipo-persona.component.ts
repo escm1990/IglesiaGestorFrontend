@@ -1,7 +1,7 @@
 import { TokenService } from './../../service/token.service';
 import { TipoPersonaService } from './../../service/tipo-persona.service';
 import { Observable } from 'rxjs';
-import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, AbstractControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { TipoPersona } from './../../models/tipo-persona';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -17,13 +17,13 @@ export class EditarTipoPersonaComponent implements OnInit {
   descripcion: String  = '';
   estado: String = '';
   tipoPersona: TipoPersona;
-  formTipoPersona: FormGroup;
+  formTipoPersona: UntypedFormGroup;
 
   constructor(
     private tipoPersonaService: TipoPersonaService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenService
   ) { }
@@ -59,8 +59,8 @@ export class EditarTipoPersonaComponent implements OnInit {
 
   buildForm(){
     this.formTipoPersona = this.formBuilder.group({
-      descripcion: new FormControl(this.descripcion,[Validators.required]),
-      estado: new FormControl(this.estado)
+      descripcion: new UntypedFormControl(this.descripcion,[Validators.required]),
+      estado: new UntypedFormControl(this.estado)
     });
   }
 

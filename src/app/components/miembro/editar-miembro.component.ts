@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MiembroService } from './../../service/miembro.service';
 import { TipoPersona } from 'src/app/models/tipo-persona';
 import { Observable } from 'rxjs';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Miembro } from 'src/app/models/miembro';
 import { environment } from 'src/environments/environment';
@@ -41,7 +41,7 @@ export class EditarMiembroComponent implements OnInit {
 
   events: string[] = [];
   fechaTemp: Date;
-  formMiembro: FormGroup;
+  formMiembro: UntypedFormGroup;
 
   //Variable para subir la imagen
   nombreArchivo: string = '';
@@ -63,7 +63,7 @@ export class EditarMiembroComponent implements OnInit {
     private miembroService: MiembroService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private uploadFilesService: UploadFilesService,
     private tokenService: TokenService,
     private tipoPersonaService: TipoPersonaService,
@@ -76,19 +76,19 @@ export class EditarMiembroComponent implements OnInit {
 
   private buildForm(){
     this.formMiembro = this.formBuilder.group({
-      nombre: new FormControl(this.nombre, [Validators.required]),
-      apellido: new FormControl(this.apellido, [Validators.required]),
-      direccion: new FormControl(this.direccion, [Validators.required]),
-      estadoCivil: new FormControl(this.estadoCivil, [Validators.required]),
-      sexo: new FormControl(this.sexo, [Validators.required]),
-      telefonoFijo: new FormControl(this.telefonoFijo, [Validators.required]),
-      telefonoMovil: new FormControl(this.telefonoMovil, [Validators.required]),
-      fechaNacimiento: new FormControl({value: this.milisegundosFecha(this.fechaNacimiento), disabled: true},[Validators.required]),
-      fechaConversion: new FormControl({value: this.milisegundosFecha(this.fechaConversion), disabled: true},[Validators.required]),
-      fechaBautismo: new FormControl({value: this.milisegundosFecha(this.fechaBautismo), disabled: true},[Validators.required]),
-      correo: new FormControl(this.correo, [ Validators.email]),
-      tipo_persona_id: new FormControl(this.tipo_persona_id),
-      foto: new FormControl('')
+      nombre: new UntypedFormControl(this.nombre, [Validators.required]),
+      apellido: new UntypedFormControl(this.apellido, [Validators.required]),
+      direccion: new UntypedFormControl(this.direccion, [Validators.required]),
+      estadoCivil: new UntypedFormControl(this.estadoCivil, [Validators.required]),
+      sexo: new UntypedFormControl(this.sexo, [Validators.required]),
+      telefonoFijo: new UntypedFormControl(this.telefonoFijo, [Validators.required]),
+      telefonoMovil: new UntypedFormControl(this.telefonoMovil, [Validators.required]),
+      fechaNacimiento: new UntypedFormControl({value: this.milisegundosFecha(this.fechaNacimiento), disabled: true},[Validators.required]),
+      fechaConversion: new UntypedFormControl({value: this.milisegundosFecha(this.fechaConversion), disabled: true},[Validators.required]),
+      fechaBautismo: new UntypedFormControl({value: this.milisegundosFecha(this.fechaBautismo), disabled: true},[Validators.required]),
+      correo: new UntypedFormControl(this.correo, [ Validators.email]),
+      tipo_persona_id: new UntypedFormControl(this.tipo_persona_id),
+      foto: new UntypedFormControl('')
     });
   }
 

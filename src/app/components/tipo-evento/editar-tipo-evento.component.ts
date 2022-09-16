@@ -1,8 +1,5 @@
 import { TokenService } from './../../service/token.service';
-import { map, startWith } from 'rxjs/operators';
-import { Iglesia } from './../../models/iglesia';
-import { IglesiaService } from './../../service/iglesia.service';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TipoEventoService } from './../../service/tipo-evento.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,9 +17,9 @@ export class EditarTipoEventoComponent implements OnInit {
   descripcion: String  = '';
   estado: String = '';
   tipoEvento: TipoEvento;
-  formTipoEvento: FormGroup;
+  formTipoEvento: UntypedFormGroup;
 
-  myControl =  new FormControl();
+  myControl =  new UntypedFormControl();
   options: string[] = [];
   filteredOptions: Observable<string[]>;
 
@@ -32,7 +29,7 @@ export class EditarTipoEventoComponent implements OnInit {
     private tipoEventoService: TipoEventoService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenService
     ) { }
@@ -69,8 +66,8 @@ export class EditarTipoEventoComponent implements OnInit {
 
   buildForm(){
     this.formTipoEvento = this.formBuilder.group({
-      descripcion: new FormControl(this.descripcion,[Validators.required]),
-      estado: new FormControl(this.estado)
+      descripcion: new UntypedFormControl(this.descripcion,[Validators.required]),
+      estado: new UntypedFormControl(this.estado)
     });
   }
 

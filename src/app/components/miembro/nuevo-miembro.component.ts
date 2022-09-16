@@ -4,7 +4,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import { TokenService } from './../../service/token.service';
 import { UploadFilesService } from './../../service/upload-files.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MiembroService } from './../../service/miembro.service';
@@ -39,7 +39,7 @@ export class NuevoMiembroComponent implements OnInit {
 
   events: string[] = [];
   fechaTemp: Date;
-  formMiembro: FormGroup;
+  formMiembro: UntypedFormGroup;
 
   //Variable para subir la imagen
   nombreArchivo: string = '';
@@ -59,7 +59,7 @@ export class NuevoMiembroComponent implements OnInit {
     private miembroService: MiembroService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private uploadFilesService: UploadFilesService,
     private tokenService: TokenService,
     private tipoPersonaService: TipoPersonaService
@@ -73,20 +73,20 @@ export class NuevoMiembroComponent implements OnInit {
 
   private buildForm(){
     this.formMiembro = this.formBuilder.group({
-      nombre: new FormControl('', [Validators.required]),
-      apellido: new FormControl('', [Validators.required]),
-      direccion: new FormControl('', [Validators.required]),
-      estadoCivil: new FormControl('', [Validators.required]),
-      sexo: new FormControl('', [Validators.required]),
-      telefonoFijo: new FormControl('', [Validators.required]),
-      telefonoMovil: new FormControl('', [Validators.required]),
-      fechaNacimiento: new FormControl({value: '', disabled: true},[Validators.required]),
-      fechaConversion: new FormControl({value: '', disabled: true},[Validators.required]),
-      fechaBautismo: new FormControl({value: '', disabled: true},[Validators.required]),
-      correo: new FormControl('', [ Validators.email]),
-      foto: new FormControl(''),
+      nombre: new UntypedFormControl('', [Validators.required]),
+      apellido: new UntypedFormControl('', [Validators.required]),
+      direccion: new UntypedFormControl('', [Validators.required]),
+      estadoCivil: new UntypedFormControl('', [Validators.required]),
+      sexo: new UntypedFormControl('', [Validators.required]),
+      telefonoFijo: new UntypedFormControl('', [Validators.required]),
+      telefonoMovil: new UntypedFormControl('', [Validators.required]),
+      fechaNacimiento: new UntypedFormControl({value: '', disabled: true},[Validators.required]),
+      fechaConversion: new UntypedFormControl({value: '', disabled: true},[Validators.required]),
+      fechaBautismo: new UntypedFormControl({value: '', disabled: true},[Validators.required]),
+      correo: new UntypedFormControl('', [ Validators.email]),
+      foto: new UntypedFormControl(''),
       //iglesia_id: new FormControl(''),
-      tipo_persona_id: new FormControl('')
+      tipo_persona_id: new UntypedFormControl('')
     });
   }
 

@@ -2,7 +2,7 @@ import { TokenService } from '../../service/token.service';
 import { environment } from '../../../environments/environment';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadFilesService } from '../../service/upload-files.service';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Iglesia } from '../../models/iglesia';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class PaisesTel {
 export class EditarIglesiaComponent implements OnInit {
 
   iglesia: Iglesia;
-  formIglesia: FormGroup;
+  formIglesia: UntypedFormGroup;
 
   //Lista de archivos seleccionados
   selectedFiles: FileList;
@@ -63,7 +63,7 @@ export class EditarIglesiaComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private uploadFilesService: UploadFilesService,
     private tokenService: TokenService
   ) { }
@@ -78,14 +78,14 @@ export class EditarIglesiaComponent implements OnInit {
 
   private buildForm(){
     this.formIglesia = this.formBuilder.group({
-      nombre: new FormControl(this.nombre, [Validators.required]),
-      direccion: new FormControl(this.direccion, [Validators.required]),
-      pais: new FormControl(this.pais, [Validators.required]),
-      telefono: new FormControl(this.telefono.substr(this.dialcode.length,this.telefono.length), [Validators.required]),
-      fechaFormulario: new FormControl({value: this.milisegundosFecha(this.iglesia.fechaFundacion), disabled: true},[Validators.required]),
-      correo: new FormControl(this.correo, [ Validators.email]),
-      logo: new FormControl(''),
-      estado: new FormControl(this.estado)
+      nombre: new UntypedFormControl(this.nombre, [Validators.required]),
+      direccion: new UntypedFormControl(this.direccion, [Validators.required]),
+      pais: new UntypedFormControl(this.pais, [Validators.required]),
+      telefono: new UntypedFormControl(this.telefono.substr(this.dialcode.length,this.telefono.length), [Validators.required]),
+      fechaFormulario: new UntypedFormControl({value: this.milisegundosFecha(this.iglesia.fechaFundacion), disabled: true},[Validators.required]),
+      correo: new UntypedFormControl(this.correo, [ Validators.email]),
+      logo: new UntypedFormControl(''),
+      estado: new UntypedFormControl(this.estado)
     });
   }
 
