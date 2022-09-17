@@ -1,14 +1,11 @@
 import { TokenService } from './../../service/token.service';
-import { Iglesia } from './../../models/iglesia';
-import { IglesiaService } from './../../service/iglesia.service';
 import { ToastrService } from 'ngx-toastr';
 import { TipoEventoService } from './../../service/tipo-evento.service';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TipoEvento } from '../../models/tipo-evento';
 import { Observable} from 'rxjs';
-import { map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-nuevo-tipo-evento',
@@ -20,10 +17,10 @@ export class NuevoTipoEventoComponent implements OnInit {
   descripcion = '';
   estado = 'ACTIVO';
   fecha: number;
-  formTipoEvento: UntypedFormGroup;
+  formTipoEvento: FormGroup;
   events: string[] = [];
 
-  myControl = new UntypedFormControl();
+  myControl = new FormControl();
   options: string[] = [];
   filteredOptions: Observable<string[]>;
 
@@ -31,7 +28,7 @@ export class NuevoTipoEventoComponent implements OnInit {
     private tipoEventoService: TipoEventoService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private tokenService: TokenService
   ) { }
 
@@ -42,7 +39,7 @@ export class NuevoTipoEventoComponent implements OnInit {
 
   private buildForm(){
     this.formTipoEvento = this.formBuilder.group({
-      descripcion: new UntypedFormControl('', [Validators.required]),
+      descripcion: new FormControl('', [Validators.required]),
        });
   }
 

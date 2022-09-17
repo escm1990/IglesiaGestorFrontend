@@ -3,9 +3,7 @@ import { TokenService } from './../../service/token.service';
 import { IglesiaService } from './../../service/iglesia.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { Iglesia } from './../../models/iglesia';
-import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { TipoPersonaService } from 'src/app/service/tipo-persona.service';
 import { map, startWith } from 'rxjs/operators';
@@ -20,13 +18,13 @@ export class NuevoTipoPersonaComponent implements OnInit {
   descripcion = '';
   estado = 'ACTIVO';
   fecha: number;
-  formTipoPersona: UntypedFormGroup;
+  formTipoPersona: FormGroup;
 
   constructor(
     private tipoPersonaService: TipoPersonaService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private tokenService: TokenService
   ) { }
 
@@ -38,7 +36,7 @@ export class NuevoTipoPersonaComponent implements OnInit {
 
   private buildForm(){
     this.formTipoPersona = this.formBuilder.group({
-      descripcion: new UntypedFormControl('', [Validators.required]),
+      descripcion: new FormControl('', [Validators.required]),
           });
   }
 

@@ -3,20 +3,20 @@
   <div class="page__content shadow p-3 position-relative">
 
 <div class="container">
-  <div class="row mt-5" *ngIf="iglesia">
-    <div class="col-md-8 mx-auto">
+  <div class="row" *ngIf="iglesia">
+    <div class="col-md-11 mx-auto">
 
             <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <br>
+                <img [src]="urlImagen" width="200px" height="200px">
+              </li>
               <li class="list-group-item"><b>ID: </b>{{iglesia.id}}</li>
               <li class="list-group-item"><b>Nombre: </b>{{iglesia.nombre}}</li>
               <li class="list-group-item"><b>Direcci&oacute;n: </b>{{iglesia.direccion}}</li>
               <li class="list-group-item"><b>Pais: </b>{{iglesia.pais}}</li>
               <li class="list-group-item"><b>Tel&eacute;fono: </b>{{iglesia.telefono}}</li>
               <li class="list-group-item"><b>Fecha Fundaci&oacute;n: </b>{{fechaMostrar}}</li>
-              <li class="list-group-item"><b>Logo: </b>
-                <br>
-                <img [src]="urlImagen" width="200px" height="200px">
-              </li>
               <li class="list-group-item"><b>Estado: </b>{{iglesia.estado}}</li>
             </ul>
             <div class="card-footer">

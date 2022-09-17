@@ -1,10 +1,10 @@
 import { TokenService } from '../../service/token.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IglesiaService } from '../../service/iglesia.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Iglesia } from '../../models/iglesia';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import * as data from 'src/assets/paises.json';
@@ -36,7 +36,7 @@ export class NuevoIglesiaComponent implements OnInit {
   dialcode = '';
   events: string[] = [];
   fechaTemp: Date;
-  formIglesia: UntypedFormGroup;
+  formIglesia: FormGroup;
   paisesArray: PaisesTel[] = [];
   nombreArchivo: string = '';
 
@@ -54,7 +54,7 @@ export class NuevoIglesiaComponent implements OnInit {
     private iglesiaService: IglesiaService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private uploadFilesService: UploadFilesService,
     private tokenService: TokenService
     ) { }
@@ -67,13 +67,13 @@ export class NuevoIglesiaComponent implements OnInit {
 
   private buildForm(){
     this.formIglesia = this.formBuilder.group({
-      nombre: new UntypedFormControl('', [Validators.required]),
-      direccion: new UntypedFormControl('', [Validators.required]),
-      pais: new UntypedFormControl('', [Validators.required]),
-      telefono: new UntypedFormControl('', [Validators.required]),
-      fechaFormulario: new UntypedFormControl({value: '', disabled: true},[Validators.required]),
-      correo: new UntypedFormControl('', [ Validators.email]),
-      logo: new UntypedFormControl('')
+      nombre: new FormControl('', [Validators.required]),
+      direccion: new FormControl('', [Validators.required]),
+      pais: new FormControl('', [Validators.required]),
+      telefono: new FormControl('', [Validators.required]),
+      fechaFormulario: new FormControl({value: '', disabled: true},[Validators.required]),
+      correo: new FormControl('', [ Validators.email]),
+      logo: new FormControl('')
     });
   }
 

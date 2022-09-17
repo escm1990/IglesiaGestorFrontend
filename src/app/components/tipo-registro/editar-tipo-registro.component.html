@@ -4,8 +4,8 @@
 
 
 <div class="container" *ngIf="tipoRegistro">
-  <div class="row mt-5">
-      <div class="col-md-8 mx-auto">
+  <div class="row">
+      <div class="col-md-11 mx-auto">
         <form novalidate (ngSubmit)="onUpdate()" [formGroup]="formTipoRegistro">
           <div class="form-group">
             <mat-label>Descripci&oacute;n </mat-label>
@@ -33,10 +33,12 @@
           </div>
           <br>
 
+          <div class="card-footer">
           <button class="btn btn-outline-success btn-block" [disabled]="formTipoRegistro.invalid">
             <i class="fas fa-pencil-alt"></i> Actualizar</button>
-          <button class="btn btn-outline-primary btn-block" (click)="volver()">
+            &nbsp;&nbsp;<button class="btn btn-outline-primary btn-block" (click)="volver()">
             <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+          </div>
         </form>
       </div>
   </div>

@@ -2,7 +2,7 @@ import { TokenService } from './../../service/token.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TipoRegistroService } from './../../service/tipo-registro.service';
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TipoRegistro } from './../../models/tipo-registro';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,13 +17,13 @@ export class EditarTipoRegistroComponent implements OnInit {
   tipoContabilizacion: String = '';
   estado: String = '';
   tipoRegistro: TipoRegistro;
-  formTipoRegistro: UntypedFormGroup;
+  formTipoRegistro: FormGroup;
 
   constructor(
     private tipoRegistroService: TipoRegistroService,
     private toastr: ToastrService,
     private router: Router,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenService
   ) { }
@@ -59,9 +59,9 @@ export class EditarTipoRegistroComponent implements OnInit {
 
   buildForm(){
     this.formTipoRegistro = this.formBuilder.group({
-      descripcion: new UntypedFormControl(this.descripcion,[Validators.required]),
-      estado: new UntypedFormControl(this.estado),
-      tipoContabilizacion: new UntypedFormControl(this.tipoContabilizacion)
+      descripcion: new FormControl(this.descripcion,[Validators.required]),
+      estado: new FormControl(this.estado),
+      tipoContabilizacion: new FormControl(this.tipoContabilizacion)
     });
   }
 

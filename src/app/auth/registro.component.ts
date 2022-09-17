@@ -4,7 +4,7 @@ import { AuthService } from './../service/auth.service';
 import { TokenService } from './../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, UntypedFormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Iglesia } from '../models/iglesia';
@@ -28,11 +28,10 @@ export class RegistroComponent implements OnInit {
 
   options: string[] = [];
   filteredOptions: Observable<string[]>;
-  myControl = new UntypedFormControl('');
+  myControl = new FormControl('');
   salida: string;
 
   Iglesias: Iglesia[] = [];
-
 
   constructor(
     private tokenService: TokenService,

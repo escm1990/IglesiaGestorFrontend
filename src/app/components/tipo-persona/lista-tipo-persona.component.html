@@ -3,7 +3,8 @@
   <div class="page__content shadow p-3 position-relative">
 
       <div class="container">
-        <table class="table table-sm">
+        <table class="table table-bordered table-striped table-hover"
+        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
           <thead>
             <tr>
               <th scope="col">Id</th>

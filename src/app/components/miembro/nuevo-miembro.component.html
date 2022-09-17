@@ -2,12 +2,10 @@
   <div class="d-flex page__box p-3 mt-2">Nuevo Miembro<i class="fas fa-person-carry    "></i></div>
   <div class="page__content shadow p-3 position-relative">
 
-
 <div class="container">
-  <div class="row mt-5">
-      <div class="col-md-8 mx-auto">
+  <div class="row">
+    <div class="col-md-11 mx-auto">
         <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formMiembro">
-
           <div class="form-group">
             <mat-label>Nombre </mat-label>
             <input name="nombre"  class="form-control" formControlName="nombre" type="text" />
@@ -147,16 +145,17 @@
             <input type="file" class="form-control" formControlName="foto" (change)="cargarImagen($event)"/>
           </div>
 
+          <br>
+          <div class="card-footer">
           <button class="btn btn-outline-success btn-block" [disabled]="formMiembro.invalid">
             <i class="fas fa-plus-circle"></i> Crear</button>
           <button class="btn btn-outline-primary btn-block" (click)="volver()">
             <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </div>
         </form>
       </div>
   </div>
 </div>
-
-
-  </div>
+</div>
 </div>
 

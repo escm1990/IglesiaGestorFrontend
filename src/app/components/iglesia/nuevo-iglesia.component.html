@@ -4,8 +4,8 @@
 
 
 <div class="container">
-  <div class="row mt-5">
-      <div class="col-md-8 mx-auto">
+  <div class="row">
+      <div class="col-md-11 mx-auto">
         <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formIglesia">
           <div class="form-group">
             <mat-label>Nombre </mat-label>
@@ -70,10 +70,13 @@
             <input type="file" class="form-control" formControlName="logo" (change)="cargarImagen($event)"/>
           </div>
 
+          <br>
+          <div class="card-footer">
           <button class="btn btn-outline-success btn-block" [disabled]="formIglesia.invalid">
             <i class="fas fa-plus-circle"></i> Crear</button>
           <button class="btn btn-outline-primary btn-block" (click)="volver()">
             <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+          </div>
         </form>
       </div>
   </div>

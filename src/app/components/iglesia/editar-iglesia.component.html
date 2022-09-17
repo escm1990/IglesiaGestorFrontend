@@ -4,8 +4,9 @@
 
 
     <div class="container" *ngIf="iglesia">
-      <div class="row mt-5">
-          <div class="col-md-8 mx-auto">
+      <div class="row">
+        <div class="col-md-11 mx-auto">
+
               <form novalidate  (ngSubmit)="onUpdate()"  [formGroup]="formIglesia">
                 <div class="form-group">
                   <mat-label>Nombre </mat-label>
@@ -65,13 +66,13 @@
                   *ngIf="formIglesia.get('correo')?.hasError('email')">
                     Escriba un email v&aacute;lido
                 </div>
+                <br>
                 <div class="form-group">
                   <mat-label>Logo </mat-label>
                    <img [src]="urlImagen" width="200px" height="200px"/>
                    <br>
                    <input type="file" class="form-control" formControlName="logo" (change)="cargarImagen($event)"/>
                 </div>
-                <br>
                 <div class="form-group">
                   <mat-label>Estado</mat-label>
                   <mat-select  matNativeControl class="form-control" formControlName="estado" name="estado">
@@ -79,10 +80,13 @@
                     <mat-option value="INACTIVO">INACTIVO</mat-option>
                   </mat-select >
                 </div>
+                <br>
+                <div class="card-footer">
                 <button class="btn btn-outline-success btn-block" [disabled]="formIglesia.invalid">
                   <i class="fas fa-pencil-alt"></i> Actualizar</button>
-              <button class="btn btn-outline-primary btn-block" (click)="volver()">
+                  &nbsp;&nbsp;<button class="btn btn-outline-primary btn-block" (click)="volver()">
                   <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+                  </div>
               </form>
           </div>
       </div>

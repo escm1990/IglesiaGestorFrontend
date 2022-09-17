@@ -3,7 +3,9 @@
   <div class="page__content shadow p-3 position-relative">
 
       <div class="container">
-        <table class="table table-sm">
+
+        <table class="table table-bordered table-striped table-hover"
+        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
           <thead>
             <tr>
               <th scope="col">Id</th>
@@ -23,6 +25,7 @@
             </tr>
           </tbody>
         </table>
+
         <div class="mt-3" *ngIf="isAdmin">
           <button class="btn btn-outline-success btn-lg" routerLink="/dashboard/iglesia/nuevo">
             <i class="fas fa-plus-circle"></i> Nueva Iglesia</button>

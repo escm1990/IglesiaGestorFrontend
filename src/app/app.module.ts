@@ -54,6 +54,7 @@ import { EditarMiembroComponent } from './components/miembro/editar-miembro.comp
 import { ListaMiembroComponent } from './components/miembro/lista-miembro.component';
 import { NuevoMiembroComponent } from './components/miembro/nuevo-miembro.component';
 
+import {DataTablesModule} from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -105,12 +106,13 @@ import { NuevoMiembroComponent } from './components/miembro/nuevo-miembro.compon
     MatSelectModule,
     MatNativeDateModule,
     MatProgressBarModule,
-    MatButtonModule,
     MatCardModule,
     MatAutocompleteModule,
     MatInputModule,
     //Toasts
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    //Datatables
+    DataTablesModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]
