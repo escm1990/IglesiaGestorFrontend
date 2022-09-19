@@ -55,6 +55,14 @@ import { ListaMiembroComponent } from './components/miembro/lista-miembro.compon
 import { NuevoMiembroComponent } from './components/miembro/nuevo-miembro.component';
 
 import {DataTablesModule} from 'angular-datatables';
+import { DetalleEventoComponent } from './components/evento/detalle-evento.component';
+import { EditarEventoComponent } from './components/evento/editar-evento.component';
+import { ListaEventoComponent } from './components/evento/lista-evento.component';
+import { NuevoEventoComponent } from './components/evento/nuevo-evento.component';
+import { DetalleEventoDetalleComponent } from './components/evento-detalle/detalle-evento-detalle.component';
+import { EditarEventoDetalleComponent } from './components/evento-detalle/editar-evento-detalle.component';
+import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
+import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-evento-detalle.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +93,15 @@ import {DataTablesModule} from 'angular-datatables';
     DetalleMiembroComponent,
     EditarMiembroComponent,
     ListaMiembroComponent,
-    NuevoMiembroComponent
+    NuevoMiembroComponent,
+    DetalleEventoComponent,
+    EditarEventoComponent,
+    ListaEventoComponent,
+    NuevoEventoComponent,
+    DetalleEventoDetalleComponent,
+    EditarEventoDetalleComponent,
+    ListaEventoDetalleComponent,
+    NuevoEventoDetalleComponent
   ],
   imports: [
     BrowserModule,

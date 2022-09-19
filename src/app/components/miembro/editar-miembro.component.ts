@@ -230,8 +230,8 @@ export class EditarMiembroComponent implements OnInit {
 
     const id = this.activatedRoute.snapshot.params.id;
 
-    this.miembroService.detalle(id).subscribe(
-      data => {
+    this.miembroService.detalle(id).subscribe({
+      next: (data) => {
         this.miembro = data;
 
         this.nombre = this.miembro.nombre;
@@ -250,15 +250,13 @@ export class EditarMiembroComponent implements OnInit {
         this.tipo_persona_id =  this.miembro.tipo_persona_id;
         this.buildForm();
         this.cargarTipoPersona();
-
-      }, err => {
+      },
+      error: (err) => {
         this.toastr.error(err.error.mensaje, 'Error (Detalle2)', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
         this.router.navigate(['/dashboard/miembro/listar']);
-
       }
-    )
-
+    });
   }
 }

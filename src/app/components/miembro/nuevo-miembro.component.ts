@@ -54,7 +54,6 @@ export class NuevoMiembroComponent implements OnInit {
   fileInfos : Observable<any> | null;
   TiposPersona: TipoPersona[] = [];
 
-
   constructor(
     private miembroService: MiembroService,
     private toastr: ToastrService,
@@ -111,18 +110,19 @@ export class NuevoMiembroComponent implements OnInit {
       this.tokenService.getUsername(),this.iglesia_id, this.tipo_persona_id);
 
       this.miembroService.guardar(miembro).subscribe(
-        data => {
-          this.toastr.success('Miembro Creado', 'OK', {
+      {
+        complete: () => {
+          this.toastr.success('Tipo Registro Creado', 'OK', {
             timeOut: 3000, positionClass: 'toast-top-center'
           });
           this.router.navigate(['/dashboard/miembro/listar']);
-        },
-        err => {
-          this.toastr.error(err.error.mensaje, 'Error (Nuevo)', {
-            timeOut: 3000,  positionClass: 'toast-top-center',
-          });
-        }
-      );
+          },
+          error: (err) =>{
+            this.toastr.error(err, 'Error (Nuevo)', {
+              timeOut: 3000,  positionClass: 'toast-top-center',
+            });
+          }
+      });
 
       this.uploadFiles();
   }
@@ -199,15 +199,16 @@ export class NuevoMiembroComponent implements OnInit {
 
   cargarTipoPersona() {
     this.tipoPersonaService.listar().subscribe(
-      data => {
-        this.TiposPersona = data;
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Error (Listar)', {
-          timeOut: 3000, positionClass: 'toast-top-center',
-        });
-      }
-    )
+      {
+        next: (data) => {
+          this.TiposPersona = data;
+          },
+          error: (err) =>{
+            this.toastr.error(err, 'Error (Listar TipoPersona)', {
+              timeOut: 3000,  positionClass: 'toast-top-center',
+            });
+          }
+      });
   }
 
 }

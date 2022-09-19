@@ -61,7 +61,11 @@ export class ListaMiembroComponent implements OnInit, OnDestroy {
           this.Miembros = data;
           this.dtTrigger.next(data);
         },
-        error: (e) => console.log(e),
+        error: (e) => {
+          this.toastr.error(e, 'Error (listarPorIglesia)', {
+            timeOut: 3000, positionClass: 'toast-top-center',
+          });
+        },
         complete: () => console.info('Consulta de miembros finalizada')
       })
 
@@ -100,7 +104,6 @@ export class ListaMiembroComponent implements OnInit, OnDestroy {
         this.cargarMiembros();
       }
     })
-
   }
 
 }
