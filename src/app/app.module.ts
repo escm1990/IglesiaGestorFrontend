@@ -61,7 +61,7 @@ import { ListaEventoComponent } from './components/evento/lista-evento.component
 import { NuevoEventoComponent } from './components/evento/nuevo-evento.component';
 import { DetalleEventoDetalleComponent } from './components/evento-detalle/detalle-evento-detalle.component';
 import { EditarEventoDetalleComponent } from './components/evento-detalle/editar-evento-detalle.component';
-import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
+//import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
 import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-evento-detalle.component';
 
 @NgModule({
@@ -100,7 +100,7 @@ import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-e
     NuevoEventoComponent,
     DetalleEventoDetalleComponent,
     EditarEventoDetalleComponent,
-    ListaEventoDetalleComponent,
+    //ListaEventoDetalleComponent,
     NuevoEventoDetalleComponent
   ],
   imports: [
@@ -125,6 +125,7 @@ import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-e
     MatCardModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatButtonModule,
     //Toasts
     ToastrModule.forRoot(),
     //Datatables

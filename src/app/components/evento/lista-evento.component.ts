@@ -91,8 +91,7 @@ export class ListaEventoComponent implements OnInit, OnDestroy {
         this.dtTrigger.unsubscribe();
         this.cargarEventos();
       }
-    })
-
+    });
   }
 
 }

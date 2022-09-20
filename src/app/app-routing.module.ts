@@ -29,7 +29,7 @@ import { ListaEventoComponent } from './components/evento/lista-evento.component
 import { EditarEventoDetalleComponent } from './components/evento-detalle/editar-evento-detalle.component';
 import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-evento-detalle.component';
 import { DetalleEventoDetalleComponent } from './components/evento-detalle/detalle-evento-detalle.component';
-import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
+//import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
 //Login y Registro de usuarios
 import { RegistroComponent } from './auth/registro.component';
 import { LoginComponent } from './auth/login.component';
@@ -87,7 +87,7 @@ const routes: Routes = [
     {path:'evento/nuevo', component:NuevoEventoComponent,  canActivate: [guard_evento], data: { expectedRol: ['admin', 'user' ]}},
     {path:'evento/editar/:id', component:EditarEventoComponent,  canActivate: [guard_evento], data: { expectedRol: ['admin', 'user'] }},
     //Evento Detalle
-    {path:'evento-detalle/listar', component:ListaEventoDetalleComponent, canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
+    //{path:'evento-detalle/listar', component:ListaEventoDetalleComponent, canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
     {path:'evento-detalle/detalle/:id', component:DetalleEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
     {path:'evento-detalle/nuevo', component:NuevoEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user' ]}},
     {path:'evento-detalle/editar/:id', component:EditarEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},

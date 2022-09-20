@@ -1,1 +1,48 @@
-<p>detalle-evento works!</p>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Detalle de Evento<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+     <div class="container">
+        <div class="row" *ngIf="evento">
+           <div class="col-md-11 mx-auto">
+              <ul class="list-group list-group-flush">
+                 <li class="list-group-item"><b>C&oacute;digo: </b>{{evento.id}}</li>
+                 <li class="list-group-item"><b>Descripci&oacute;n: </b>{{evento.descripcion}}</li>
+                 <li class="list-group-item"><b>Fecha: </b>{{fechaMostrar}}</li>
+                 <li class="list-group-item"><b>Tipo Evento: </b>{{tipoEventoMostrar}}</li>
+              </ul>
+              <div class="card-footer">
+                 <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+                 &nbsp; &nbsp;<button *ngIf="isAdmin" class="btn btn-outline-success btn-block" routerLink="/dashboard/evento-detalle/nuevo"> <i class="fas fa-plus-circle"></i> Agregar Registro</button>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="container">
+        <div class="col-md-11 mx-auto">
+           <table class="table table-bordered table-striped table-hover"
+           datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+           <thead>
+              <tr>
+                 <th scope="col">Id</th>
+                 <th scope="col">Miembro</th>
+                 <th scope="col">Comentario</th>
+                 <th scope="col">Ver</th>
+                 <th scope="col" *ngIf="isAdmin">Editar</th>
+                 <th scope="col" *ngIf="isAdmin">Borrar</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr *ngFor="let eventoDetalle of eventoDetalle ">
+                 <td>{{eventoDetalle.id}}</td>
+                 <td>{{miembroMostrar}}</td>
+                 <td>{{eventoDetalle.comentario}}</td>
+                 <td><button class="btn btn-outline-primary" routerLink="/dashboard/evento-detalle/detalle/{{evento.id}}"><i class="far fa-eye"></i> Ver</button></td>
+                 <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/dashboard/evento-detalle/editar/{{evento.id}}"><i class="far fa-edit"></i> Editar</button></td>
+                 <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(evento.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
+              </tr>
+           </tbody>
+           </table>
+        </div>
+     </div>
+  </div>
+</div>

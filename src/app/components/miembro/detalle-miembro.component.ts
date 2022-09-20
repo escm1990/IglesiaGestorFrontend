@@ -39,34 +39,39 @@ export class DetalleMiembroComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params.id;
 
     this.miembroService.detalle(id).subscribe(
-      data => {
-        this.miembro = data;
+      {
+        next: (data) =>{
 
-        this.tipoPersonaService.detalle(this.miembro.tipo_persona_id).subscribe(
-          data => {
-            this.tipoPersona = data;
-            this.tipoPersonaMostrar = this.tipoPersona.descripcion;
-          },
-          err => {
-            this.toastr.error(err.error.mensaje, 'Error (DetalleTipoPersona1)', {
-              timeOut: 3000,  positionClass: 'toast-top-center',
-            });
-          }
-        );
+          this.miembro = data;
 
-        this.fechaMostrarBautismo = this.milisegundosFecha(this.miembro.fechaBautismo);
-        this.fechaMostrarConversion = this.milisegundosFecha(this.miembro.fechaConversion);
-        this.fechaMostrarNacimiento = this.milisegundosFecha(this.miembro.fechaNacimiento);
-        this.urlImagen = this.rutaCarpeta+this.miembro.foto;
+          this.tipoPersonaService.detalle(this.miembro.tipo_persona_id).subscribe(
+            {
+              next: (data) =>{
+                this.tipoPersona = data;
+                this.tipoPersonaMostrar = this.tipoPersona.descripcion;
+              },
+              error: (err) => {
+                this.toastr.error(err.error.mensaje, 'Error (DetalleTipoPersona1)', {
+                  timeOut: 3000,  positionClass: 'toast-top-center',
+                });
+              }
+            }
+          );
 
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Error (Detalle1)', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
-        this.volver();
+          this.fechaMostrarBautismo = this.milisegundosFecha(this.miembro.fechaBautismo);
+          this.fechaMostrarConversion = this.milisegundosFecha(this.miembro.fechaConversion);
+          this.fechaMostrarNacimiento = this.milisegundosFecha(this.miembro.fechaNacimiento);
+          this.urlImagen = this.rutaCarpeta+this.miembro.foto;
+
+        },
+        error: (err) => {
+          this.toastr.error(err.error.mensaje, 'Error (Detalle1)', {
+            timeOut: 3000,  positionClass: 'toast-top-center',
+          });
+          this.volver();
+        }
       }
-    );
+      );
   }
 
   volver(): void {

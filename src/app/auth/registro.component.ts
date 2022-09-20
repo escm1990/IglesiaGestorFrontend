@@ -4,9 +4,9 @@ import { AuthService } from './../service/auth.service';
 import { TokenService } from './../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith} from 'rxjs/operators';
 import { Iglesia } from '../models/iglesia';
 import { IglesiaService } from '../service/iglesia.service';
 
