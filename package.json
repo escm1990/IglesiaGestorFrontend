@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
     "@angular/router": "^14.2.2",
-    "angular-datatables": "^14.0.0",
+    "angular-datatables": "^13.1.0",
     "datatables.net": "^1.11.3",
     "datatables.net-dt": "^1.11.3",
     "jquery": "^3.6.0",
@@ -29,6 +29,7 @@
     "rxjs": "~7.5.4",
     "sweetalert": "^2.1.2",
     "tslib": "^2.3.1",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

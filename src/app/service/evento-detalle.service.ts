@@ -1,3 +1,4 @@
+import { EventoDetalleArray } from './../models/evento-detalle-array';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -36,5 +37,9 @@ export class EventoDetalleService {
 
   public listarEvento(id_evento: number) : Observable<EventoDetalle[]>{
    return this.httpClient.get<EventoDetalle[]>(this.EventoDetalleUrl+`listar/evento/${id_evento}`);
- }
+  }
+
+  public guardarCargaExcel(arreglo: EventoDetalleArray) : Observable<any> {
+    return this.httpClient.post<any>(this.EventoDetalleUrl + 'guardar/excel', arreglo);
+  }
 }

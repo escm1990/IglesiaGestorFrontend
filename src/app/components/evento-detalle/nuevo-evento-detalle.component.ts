@@ -6,7 +6,7 @@ import { TokenService } from './../../service/token.service';
 import { EventoDetalleService } from './../../service/evento-detalle.service';
 import { Miembro } from 'src/app/models/miembro';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 
 @Component({
