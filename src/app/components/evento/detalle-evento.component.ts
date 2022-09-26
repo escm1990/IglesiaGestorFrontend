@@ -19,6 +19,10 @@ export interface iDetalleInsertar {
   Comentario: string;
 }
 
+interface EventoDetalleMember extends Partial<EventoDetalle> {
+  mostrarMiembro: String
+}
+
 @Component({
   selector: 'app-detalle-evento',
   templateUrl: './detalle-evento.component.html',
@@ -35,13 +39,16 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
   tipoEventoMostrar: String = '';
   eventoDetalle: EventoDetalle[] = [];
   eventoDetalleExcel: EventoDetalle[] = [];
-  miembroMostrar = '';
+  miembroMostrar: string[] = [];
   eda: EventoDetalleArray;
   ed: EventoDetalle;
   objMiembro: number;
   objComent: String;
   miembro: Miembro;
 
+  objInt : EventoDetalleMember;
+
+  index: number = 0;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -130,6 +137,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
 
   cargarDetalleEvento(id: number){
 
+    this.index = 0;
     this.eventoDetalleService.listarEvento(id).subscribe(
       {
         next: (data) => {
@@ -143,15 +151,14 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
               {
                 next: (data) => {
                     this.miembro = data;
-                    this.miembroMostrar = this.miembro.nombre+' '+this.miembro.apellido;
-                    console.log(this.miembroMostrar);
+                    this.miembroMostrar[this.index] = this.miembro.nombre+' '+this.miembro.apellido;
+                    this.index++;
                 },
                 error: (e) =>{
                   console.log('Error consultar descripcion del miembro');
                 }
               }
             );
-
           });
         },
         error: (e) => {
@@ -177,6 +184,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
         });
         this.dtTrigger.unsubscribe();
         //this.cargarListaDetalleEvento();
+        this.volverCargar();
       }
     });
   }

@@ -50,13 +50,13 @@
               </tr>
            </thead>
            <tbody>
-              <tr *ngFor="let eventoDetalle of eventoDetalle ">
+              <tr *ngFor="let eventoDetalle of eventoDetalle; let i = index">
                  <td>{{eventoDetalle.id}}</td>
-                 <td>{{miembroMostrar}}</td>
+                 <td>{{eventoDetalle.miembro_id}}</td>
                  <td>{{eventoDetalle.comentario}}</td>
-                 <td><button class="btn btn-outline-primary" routerLink="/dashboard/evento-detalle/detalle/{{evento.id}}"><i class="far fa-eye"></i> Ver</button></td>
-                 <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/dashboard/evento-detalle/editar/{{evento.id}}"><i class="far fa-edit"></i> Editar</button></td>
-                 <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(evento.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
+                 <td><button class="btn btn-outline-primary" routerLink="/dashboard/evento-detalle/detalle/{{eventoDetalle.id}}"><i class="far fa-eye"></i> Ver</button></td>
+                 <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/dashboard/evento-detalle/editar/{{eventoDetalle.id}}"><i class="far fa-edit"></i> Editar</button></td>
+                 <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(eventoDetalle.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
               </tr>
            </tbody>
            </table>

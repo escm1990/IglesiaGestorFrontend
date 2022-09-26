@@ -1,1 +1,49 @@
-<p>editar-evento-detalle works!</p>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Nuevo Detalle de Evento<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+<div class="container" *ngIf="detalleEvento">
+  <div class="row">
+    <div class="col-md-11 mx-auto">
+
+      <div class="form-group">
+        <label for="miembro">Miembro </label>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Miembro</mat-label>
+          <input type="text"
+                 placeholder="--Seleccione--"
+                 aria-label="Miembro"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeSelect($event.option.value)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> </div>
+
+        <form novalidate  (ngSubmit)="onUpdate()"  [formGroup]="formDetalleEvento">
+
+          <div class="form-group">
+            <mat-label>Comentario </mat-label>
+            <input name="comentarioF"  class="form-control" formControlName="comentarioF" type="text" />
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formDetalleEvento.get('comentarioF')?.hasError('required') && formDetalleEvento.get('comentarioF')?.touched">
+            Campo requerido
+          </div>
+
+          <br>
+          <div class="card-footer">
+          <button class="btn btn-outline-success btn-block" [disabled]="formDetalleEvento.invalid">
+            <i class="fas fa-plus-circle"></i> Actualizar</button>
+            &nbsp;&nbsp;<button class="btn btn-outline-primary btn-block" (click)="volver()">
+            <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>

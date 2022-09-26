@@ -1,1 +1,24 @@
-<p>detalle-evento-detalle works!</p>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Detalle de Registro de Evento<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+<div class="container">
+    <div class="row" *ngIf="eventoDetalle">
+      <div class="col-md-11 mx-auto">
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>C&oacute;digo: </b>{{eventoDetalle.id}}</li>
+              <li class="list-group-item"><b>Miembro: </b>{{miembroMostrar}}</li>
+              <li class="list-group-item"><b>Comentario: </b>{{eventoDetalle.comentario}}</li>
+            </ul>
+            <div class="card-footer">
+                <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </div>
+
+    </div>
+</div>
+</div>
+
+
+  </div>
+</div>
