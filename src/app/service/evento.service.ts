@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 
+const EVENTO_ID = 'EventoId';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,5 +39,14 @@ export class EventoService {
   public listarIglesia(id_iglesia: number) : Observable<Evento[]>{
    return this.httpClient.get<Evento[]>(this.EventoUrl+`listar/iglesia/${id_iglesia}`);
  }
+
+   public setEventoId(eId: string): void{
+    window.sessionStorage.removeItem(EVENTO_ID);
+    window.sessionStorage.setItem(EVENTO_ID, eId);
+   }
+
+   public getEventoId(): string{
+    return sessionStorage.getItem(EVENTO_ID) || '';
+   }
 
 }

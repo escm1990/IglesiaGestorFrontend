@@ -84,6 +84,7 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
       }
     });
     this.mostrarDetalle();
+    this.eventoService.setEventoId(this.idEvento);
   }
 
   ngOnDestroy(): void {

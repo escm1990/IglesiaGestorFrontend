@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Nuevo Detalle de Evento<i class="fas fa-person-carry    "></i></div>
+  <div class="d-flex page__box p-3 mt-2">Editar Detalle de Evento<i class="fas fa-person-carry    "></i></div>
   <div class="page__content shadow p-3 position-relative">
 
 <div class="container" *ngIf="detalleEvento">
@@ -7,7 +7,11 @@
     <div class="col-md-11 mx-auto">
 
       <div class="form-group">
-        <label for="miembro">Miembro </label>
+        <mat-label><b>Miembro:</b> {{miembroMostrar}}</mat-label>
+      </div>
+
+      <div class="form-group">
+        <label for="miembro">Cambiar Miembro &nbsp;&nbsp;</label>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Miembro</mat-label>
           <input type="text"
@@ -15,7 +19,8 @@
                  aria-label="Miembro"
                  matInput
                  [formControl]="myControl"
-                 [matAutocomplete]="auto">
+                 [matAutocomplete]="auto"
+                 >
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeSelect($event.option.value)">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -26,7 +31,7 @@
         <form novalidate  (ngSubmit)="onUpdate()"  [formGroup]="formDetalleEvento">
 
           <div class="form-group">
-            <mat-label>Comentario </mat-label>
+            <mat-label><b>Comentario: </b> </mat-label>
             <input name="comentarioF"  class="form-control" formControlName="comentarioF" type="text" />
           </div>
           <div class="alert alert-danger"

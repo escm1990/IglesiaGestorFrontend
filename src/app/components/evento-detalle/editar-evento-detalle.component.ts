@@ -28,7 +28,7 @@ export class EditarEventoDetalleComponent implements OnInit {
 
   miembros: Miembro[] = [];
   miembro: number | any;
-
+  miembroMostrar = '';
 
   constructor(
     private toastr: ToastrService,
@@ -40,8 +40,8 @@ export class EditarEventoDetalleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarDetalle();
     this.cargarMiembros();
+    this.cargarDetalle();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
@@ -54,6 +54,7 @@ export class EditarEventoDetalleComponent implements OnInit {
         next: (data) =>{
           this.detalleEvento = data;
           this.comentarioMostrar =  this.detalleEvento.comentario;
+          this.miembroMostrar = this.obtenerMiembro(this.detalleEvento.miembro_id);
           this.buildForm();
         },
         error: (e) =>{
@@ -68,7 +69,7 @@ export class EditarEventoDetalleComponent implements OnInit {
   private buildForm(){
     this.formDetalleEvento =  this.formBuilder.group(
       {
-        comentarioF: new FormControl(this.comentarioMostrar,[Validators.required]),
+        comentarioF: new FormControl(this.comentarioMostrar,[Validators.required])
       }
     );
   }
@@ -102,6 +103,10 @@ export class EditarEventoDetalleComponent implements OnInit {
             data.foto.toString(), data.estado.toString(), data.ultimoUsuario.toString(), data.iglesia_id, data.tipo_persona_id);
 
           salida = data.nombre.toString()+' '+data.apellido.toString();
+          console.log('Salida(1) -- '+salida);
+          this.miembroMostrar = this.detalleEvento.miembro_id+' - '+salida;
+
+
         },
         error: (e) =>{
           this.toastr.error(e, 'Error (Listar Miembro)', {
@@ -111,7 +116,7 @@ export class EditarEventoDetalleComponent implements OnInit {
       }
     );
 
-    console.log('Salida -- '+salida);
+    console.log('Salida(2) -- '+salida);
     return salida;
   }
 
