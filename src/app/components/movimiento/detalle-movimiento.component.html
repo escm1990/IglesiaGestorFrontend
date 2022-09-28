@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Detalle de Evento<i class="fas fa-person-carry    "></i></div>
+  <div class="d-flex page__box p-3 mt-2">Detalle de Movimiento<i class="fas fa-person-carry    "></i></div>
   <div class="page__content shadow p-3 position-relative">
      <div class="container">
         <div class="row" *ngIf="movimiento">
@@ -11,7 +11,7 @@
               </ul>
               <div class="card-footer">
                  <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
-                 &nbsp; &nbsp;<button *ngIf="isAdmin" class="btn btn-outline-success btn-block" routerLink="/dashboard/evento-detalle/nuevo"> <i class="fas fa-plus-circle"></i> Agregar Registro</button>
+                 &nbsp; &nbsp;<button *ngIf="isAdmin" class="btn btn-outline-success btn-block" routerLink="/dashboard/movimiento-detalle/nuevo"> <i class="fas fa-plus-circle"></i> Agregar Registro</button>
                  &nbsp; &nbsp;<button *ngIf="isAdmin && isExcelFile" class="btn btn-outline-danger btn-block" (click)="guardarCargaExcel()"> <i class="fas fa-plus-circle"></i> Guardar Registros</button>
 
                  &nbsp; &nbsp;<input type="file" (change)="onChange($event)" #inputFile> <button (click)="removeData()">Limpiar</button>
@@ -20,6 +20,34 @@
            </div>
         </div>
      </div>
+
+     <div class="container">
+      <div class="col-md-11 mx-auto">
+         <table class="table table-bordered table-striped table-hover"
+         datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+         <thead>
+            <tr>
+               <th scope="col">Id</th>
+               <th scope="col">Tipo</th>
+               <th scope="col">Comentario</th>
+               <th scope="col">Ver</th>
+               <th scope="col" *ngIf="isAdmin">Editar</th>
+               <th scope="col" *ngIf="isAdmin">Borrar</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let movimientoDetalle of movimientoDetalle; let i = index">
+               <td>{{movimientoDetalle.id}}</td>
+               <td>{{movimientoDetalle.tipo_registro_id}}</td>
+               <td>{{movimientoDetalle.comentario}}</td>
+               <td><button class="btn btn-outline-primary" routerLink="/dashboard/movimiento-detalle/detalle/{{movimientoDetalle.id}}"><i class="far fa-eye"></i> Ver</button></td>
+               <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/dashboard/movimiento-detalle/editar/{{movimientoDetalle.id}}"><i class="far fa-edit"></i> Editar</button></td>
+               <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(movimientoDetalle.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
+            </tr>
+         </tbody>
+         </table>
+      </div>
+   </div>
 
   </div>
 </div>

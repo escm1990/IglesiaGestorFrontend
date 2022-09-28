@@ -1,7 +1,3 @@
-import { ListaMovimientoComponent } from './components/movimiento/lista-movimiento.component';
-import { DetalleMovimientoComponent } from './components/movimiento/detalle-movimiento.component';
-import { NuevoMovimientoComponent } from './components/movimiento/nuevo-movimiento.component';
-import { EditarMovimientoComponent } from './components/movimiento/editar-movimiento.component';
 //Angular Core
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -33,7 +29,13 @@ import { ListaEventoComponent } from './components/evento/lista-evento.component
 import { EditarEventoDetalleComponent } from './components/evento-detalle/editar-evento-detalle.component';
 import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-evento-detalle.component';
 import { DetalleEventoDetalleComponent } from './components/evento-detalle/detalle-evento-detalle.component';
-//import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
+import { EditarMovimientoDetalleComponent } from './components/movimiento-detalle/editar-movimiento-detalle.component';
+import { NuevoMovimientoDetalleComponent } from './components/movimiento-detalle/nuevo-movimiento-detalle.component';
+import { DetalleMovimientoDetalleComponent } from './components/movimiento-detalle/detalle-movimiento-detalle.component';
+import { ListaMovimientoComponent } from './components/movimiento/lista-movimiento.component';
+import { DetalleMovimientoComponent } from './components/movimiento/detalle-movimiento.component';
+import { NuevoMovimientoComponent } from './components/movimiento/nuevo-movimiento.component';
+import { EditarMovimientoComponent } from './components/movimiento/editar-movimiento.component';
 //Login y Registro de usuarios
 import { RegistroComponent } from './auth/registro.component';
 import { LoginComponent } from './auth/login.component';
@@ -49,7 +51,7 @@ import { MiembroGuardService as guard_miembro } from './guards/miembro-guard.ser
 import { EventoGuardService as guard_evento } from './guards/evento-guard.service';
 import { EventoDetalleGuardService as guard_evento_detalle } from './guards/evento-detalle-guard.service';
 import { MovimientoGuardService as guard_movimiento } from './guards/movimiento-guard.service';
-import { MovimientoDetalleGuardService as guar_movimiento_detalle} from './guards/movimiento-detalle-guard.service';
+import { MovimientoDetalleGuardService as guard_movimiento_detalle} from './guards/movimiento-detalle-guard.service';
 
 const routes: Routes = [
 
@@ -92,7 +94,6 @@ const routes: Routes = [
     {path:'evento/nuevo', component:NuevoEventoComponent,  canActivate: [guard_evento], data: { expectedRol: ['admin', 'user' ]}},
     {path:'evento/editar/:id', component:EditarEventoComponent,  canActivate: [guard_evento], data: { expectedRol: ['admin', 'user'] }},
     //Evento Detalle
-    //{path:'evento-detalle/listar', component:ListaEventoDetalleComponent, canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
     {path:'evento-detalle/detalle/:id', component:DetalleEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
     {path:'evento-detalle/nuevo', component:NuevoEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user' ]}},
     {path:'evento-detalle/editar/:id', component:EditarEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
@@ -101,6 +102,10 @@ const routes: Routes = [
     {path:'movimiento/detalle/:id', component:DetalleMovimientoComponent,  canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user'] }},
     {path:'movimiento/nuevo', component:NuevoMovimientoComponent,  canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user' ]}},
     {path:'movimiento/editar/:id', component:EditarMovimientoComponent,  canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user'] }},
+    //Movimiento Detalle
+    {path:'movimiento-detalle/detalle/:id', component:DetalleMovimientoDetalleComponent,  canActivate: [guard_movimiento_detalle], data: { expectedRol: ['admin', 'user'] }},
+    {path:'movimiento-detalle/nuevo', component:NuevoMovimientoDetalleComponent,  canActivate: [guard_movimiento_detalle], data: { expectedRol: ['admin', 'user' ]}},
+    {path:'movimiento-detalle/editar/:id', component:EditarMovimientoDetalleComponent,  canActivate: [guard_movimiento_detalle], data: { expectedRol: ['admin', 'user'] }},
 
   ]
   },

@@ -67,6 +67,9 @@ import { DetalleMovimientoComponent } from './components/movimiento/detalle-movi
 import { EditarMovimientoComponent } from './components/movimiento/editar-movimiento.component';
 import { ListaMovimientoComponent } from './components/movimiento/lista-movimiento.component';
 import { NuevoMovimientoComponent } from './components/movimiento/nuevo-movimiento.component';
+import { EditarMovimientoDetalleComponent } from './components/movimiento-detalle/editar-movimiento-detalle.component';
+import { DetalleMovimientoDetalleComponent } from './components/movimiento-detalle/detalle-movimiento-detalle.component';
+import { NuevoMovimientoDetalleComponent } from './components/movimiento-detalle/nuevo-movimiento-detalle.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +112,10 @@ import { NuevoMovimientoComponent } from './components/movimiento/nuevo-movimien
     DetalleMovimientoComponent,
     EditarMovimientoComponent,
     ListaMovimientoComponent,
-    NuevoMovimientoComponent
+    NuevoMovimientoComponent,
+    EditarMovimientoDetalleComponent,
+    DetalleMovimientoDetalleComponent,
+    NuevoMovimientoDetalleComponent
   ],
   imports: [
     BrowserModule,

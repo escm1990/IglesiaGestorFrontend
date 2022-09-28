@@ -242,7 +242,6 @@ export class DetalleEventoComponent implements OnInit, OnDestroy {
     window.location.reload();
   }
 
-
   guardarCargaExcel(){
 		let indx: number = 0;
 
