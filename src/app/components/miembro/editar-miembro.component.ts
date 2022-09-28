@@ -106,29 +106,29 @@ export class EditarMiembroComponent implements OnInit {
     this.miembro.tipo_persona_id =  this.formMiembro.get('tipo_persona_id')?.value;
     this.miembro.sexo = this.formMiembro.get('sexo')?.value;
     this.miembro.foto = this.nombreArchivo === '' || this.nombreArchivo === null ? this.miembro.foto : this.nombreArchivo;
-
+    this.miembro.fechaBautismo = this.fechaBautismo;
+    this.miembro.fechaConversion = this.fechaConversion;
+    this.miembro.fechaNacimiento = this.fechaNacimiento;
 
     this.getIglesia = this.tokenService.getUserIglesiaId();
     this.miembro.iglesia_id = +this.getIglesia; //conversión de string a number (+)
 
-      this.miembroService.modificar(id, this.miembro).subscribe(
-        data => {
+      this.miembroService.modificar(id, this.miembro).subscribe({
+        complete: () =>{
           this.toastr.success('Miembro Actualizado', 'OK', {
             timeOut: 3000, positionClass: 'toast-top-center'
           });
-          this.router.navigate(['/dashboard/miembro/listar']);
+          this.volver();
         },
-        err => {
-          this.toastr.error(err.error.mensaje, 'Error (Modificar)', {
+        error: (err) =>{
+          this.toastr.error(err.error.mensaje.toString(), 'Error (Modificar)', {
             timeOut: 3000,  positionClass: 'toast-top-center',
           });
         }
-      );
+      });
 
-      this.uploadFiles();
-
-      this.deleteFile(this.nombreArchivoAnterior);
-
+    this.uploadFiles();
+    this.deleteFile(this.nombreArchivoAnterior);
   }
 
   public onDate(event: MatDatepickerInputEvent<Date>, campo: number): void {

@@ -63,6 +63,10 @@ import { DetalleEventoDetalleComponent } from './components/evento-detalle/detal
 import { EditarEventoDetalleComponent } from './components/evento-detalle/editar-evento-detalle.component';
 //import { ListaEventoDetalleComponent } from './components/evento-detalle/lista-evento-detalle.component';
 import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-evento-detalle.component';
+import { DetalleMovimientoComponent } from './components/movimiento/detalle-movimiento.component';
+import { EditarMovimientoComponent } from './components/movimiento/editar-movimiento.component';
+import { ListaMovimientoComponent } from './components/movimiento/lista-movimiento.component';
+import { NuevoMovimientoComponent } from './components/movimiento/nuevo-movimiento.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +105,11 @@ import { NuevoEventoDetalleComponent } from './components/evento-detalle/nuevo-e
     DetalleEventoDetalleComponent,
     EditarEventoDetalleComponent,
     //ListaEventoDetalleComponent,
-    NuevoEventoDetalleComponent
+    NuevoEventoDetalleComponent,
+    DetalleMovimientoComponent,
+    EditarMovimientoComponent,
+    ListaMovimientoComponent,
+    NuevoMovimientoComponent
   ],
   imports: [
     BrowserModule,

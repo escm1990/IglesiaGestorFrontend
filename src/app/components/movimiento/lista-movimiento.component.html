@@ -1,0 +1,33 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Movimientos</div>
+  <div class="page__content shadow p-3 position-relative">
+
+      <div class="container">
+        <table class="table table-bordered table-striped table-hover"
+        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Descripci&oacute;n</th>
+              <th scope="col">Ver</th>
+              <th scope="col" *ngIf="isAdmin">Editar</th>
+              <th scope="col" *ngIf="isAdmin">Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let movimiento of movimientos">
+              <td>{{movimiento.id}}</td>
+              <td>{{movimiento.descripcion}}</td>
+              <td><button class="btn btn-outline-primary" routerLink="/dashboard/movimiento/detalle/{{movimiento.id}}"><i class="far fa-eye"></i> Ver</button></td>
+              <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/dashboard/movimiento/editar/{{movimiento.id}}"><i class="far fa-edit"></i> Editar</button></td>
+              <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(movimiento.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mt-3" *ngIf="isAdmin">
+          <button class="btn btn-outline-success btn-lg" routerLink="/dashboard/movimiento/nuevo">
+            <i class="fas fa-plus-circle"></i> Nuevo Movimiento</button>
+        </div>
+
+  </div>
+</div>

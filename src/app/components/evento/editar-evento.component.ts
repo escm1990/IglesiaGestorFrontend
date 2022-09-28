@@ -85,6 +85,7 @@ export class EditarEventoComponent implements OnInit {
     this.getIglesia = this.tokenService.getUserIglesiaId();
     this.evento.iglesia_id = +this.getIglesia; //conversión de string a number (+)
     this.evento.ultimo_usuario = this.tokenService.getUsername();
+    this.evento.fecha = this.fecha;
 
     this.eventoService.modificar(id, this.evento).subscribe({
       complete: () => {

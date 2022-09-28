@@ -1,18 +1,18 @@
 <div class="container-fluid page">
-  <div class="d-flex page__box p-3 mt-2">Nuevo Evento<i class="fas fa-person-carry    "></i></div>
+  <div class="d-flex page__box p-3 mt-2">Nuevo Movimiento<i class="fas fa-person-carry    "></i></div>
   <div class="page__content shadow p-3 position-relative">
 
-<div class="container" *ngIf="evento">
+<div class="container">
   <div class="row">
     <div class="col-md-11 mx-auto">
-        <form novalidate  (ngSubmit)="onUpdate()"  [formGroup]="formEvento">
+        <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formMovimiento">
 
           <div class="form-group">
             <mat-label>Descripcion </mat-label>
             <input name="descripcion"  class="form-control" formControlName="descripcion" type="text" />
           </div>
           <div class="alert alert-danger"
-            *ngIf="formEvento.get('descripcion')?.hasError('required') && formEvento.get('descripcion')?.touched">
+            *ngIf="formMovimiento.get('descripcion')?.hasError('required') && formMovimiento.get('descripcion')?.touched">
             Campo requerido
           </div>
 
@@ -24,27 +24,14 @@
             <mat-datepicker #picker1 disabled="false"></mat-datepicker>
           </div>
           <div class="alert alert-danger"
-          *ngIf="formEvento.get('fecha')?.hasError('required') && formEvento.get('fecha')?.touched">
+          *ngIf="formMovimiento.get('fecha')?.hasError('required') && formMovimiento.get('fecha')?.touched">
           Campo requerido
-          </div>
-
-          <div class="form-group">
-            <mat-label>Tipo Evento</mat-label>
-            <mat-select  matNativeControl class="form-control" formControlName="tipo_evento_id" name="tipo_evento_id" required>
-               <mat-option *ngFor="let tipo of TiposEventos" [value]="tipo.id">
-                {{tipo.descripcion}}
-              </mat-option>
-            </mat-select >
-          </div>
-          <div class="alert alert-danger"
-            *ngIf="formEvento.get('tipo_evento_id')?.hasError('required') && formEvento.get('tipo_evento_id')?.touched">
-            Campo requerido
           </div>
 
           <br>
           <div class="card-footer">
-          <button class="btn btn-outline-success btn-block" [disabled]="formEvento.invalid">
-            <i class="fas fa-plus-circle"></i> Actualizar</button>
+          <button class="btn btn-outline-success btn-block" [disabled]="formMovimiento.invalid">
+            <i class="fas fa-plus-circle"></i> Crear</button>
           <button class="btn btn-outline-primary btn-block" (click)="volver()">
             <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
             </div>

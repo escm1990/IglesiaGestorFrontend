@@ -1,3 +1,7 @@
+import { ListaMovimientoComponent } from './components/movimiento/lista-movimiento.component';
+import { DetalleMovimientoComponent } from './components/movimiento/detalle-movimiento.component';
+import { NuevoMovimientoComponent } from './components/movimiento/nuevo-movimiento.component';
+import { EditarMovimientoComponent } from './components/movimiento/editar-movimiento.component';
 //Angular Core
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -44,7 +48,8 @@ import { TipoRegistroGuardService as guard_tipo_registro} from './guards/tipo-re
 import { MiembroGuardService as guard_miembro } from './guards/miembro-guard.service';
 import { EventoGuardService as guard_evento } from './guards/evento-guard.service';
 import { EventoDetalleGuardService as guard_evento_detalle } from './guards/evento-detalle-guard.service';
-
+import { MovimientoGuardService as guard_movimiento } from './guards/movimiento-guard.service';
+import { MovimientoDetalleGuardService as guar_movimiento_detalle} from './guards/movimiento-detalle-guard.service';
 
 const routes: Routes = [
 
@@ -91,6 +96,12 @@ const routes: Routes = [
     {path:'evento-detalle/detalle/:id', component:DetalleEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
     {path:'evento-detalle/nuevo', component:NuevoEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user' ]}},
     {path:'evento-detalle/editar/:id', component:EditarEventoDetalleComponent,  canActivate: [guard_evento_detalle], data: { expectedRol: ['admin', 'user'] }},
+    //Movimento
+    {path:'movimiento/listar', component:ListaMovimientoComponent, canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user'] }},
+    {path:'movimiento/detalle/:id', component:DetalleMovimientoComponent,  canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user'] }},
+    {path:'movimiento/nuevo', component:NuevoMovimientoComponent,  canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user' ]}},
+    {path:'movimiento/editar/:id', component:EditarMovimientoComponent,  canActivate: [guard_movimiento], data: { expectedRol: ['admin', 'user'] }},
+
   ]
   },
 
