@@ -1,1 +1,72 @@
-<p>nuevo-movimiento-detalle works!</p>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Nuevo Detalle de Movimiento<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 mx-auto">
+
+      <div class="form-group">
+        <label for="miembro">Miembro &nbsp;&nbsp;</label>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Miembro</mat-label>
+          <input type="text"
+                 placeholder="--Seleccione--"
+                 aria-label="Miembro"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeSelect($event.option.value)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> </div>
+
+        <form novalidate  (ngSubmit)="onCreate()"  [formGroup]="formDetalleMovimiento">
+
+          <div class="form-group">
+            <mat-label>Comentario </mat-label>
+            <input name="comentario"  class="form-control" formControlName="comentario" type="text" />
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formDetalleMovimiento.get('comentario')?.hasError('required') && formDetalleMovimiento.get('comentario')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Monto </mat-label>
+            <input name="monto" class="form-control" formControlName="monto" type="number" min="0" step=".01"/>
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formDetalleMovimiento.get('monto')?.hasError('required') && formDetalleMovimiento.get('monto')?.touched">
+            Campo requerido
+          </div>
+
+          <div class="form-group">
+            <mat-label>Tipo Evento</mat-label>
+            <mat-select  matNativeControl class="form-control" formControlName="tipoRegistro" name="tipoRegistro" required>
+               <mat-option *ngFor="let tipo of tiposRegistro" [value]="tipo.id">
+                {{tipo.descripcion}}
+              </mat-option>
+            </mat-select >
+          </div>
+          <div class="alert alert-danger"
+            *ngIf="formDetalleMovimiento.get('tipoRegistro')?.hasError('required') && formDetalleMovimiento.get('tipoRegistro')?.touched">
+            Campo requerido
+          </div>
+
+          <br>
+
+          <div class="card-footer">
+          <button class="btn btn-outline-success btn-block" [disabled]="formDetalleMovimiento.invalid">
+            <i class="fas fa-plus-circle"></i> Crear</button>
+            &nbsp;&nbsp;<button class="btn btn-outline-primary btn-block" (click)="volver()">
+            <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>

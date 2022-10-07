@@ -1,1 +1,28 @@
-<p>detalle-movimiento-detalle works!</p>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Detalle de Registro de Movimiento<i class="fas fa-person-carry    "></i></div>
+  <div class="page__content shadow p-3 position-relative">
+
+<div class="container">
+    <div class="row" *ngIf="movimientoDetalle">
+      <div class="col-md-11 mx-auto">
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>C&oacute;digo Movimiento: </b>{{movimientoDetalle.movimiento_id}}</li>
+              <li class="list-group-item"><b>C&oacute;digo Detalle: </b>{{movimientoDetalle.id}}</li>
+              <li class="list-group-item"><b>Miembro: </b>{{miembroMostrar}}</li>
+              <li class="list-group-item"><b>Comentario: </b>{{movimientoDetalle.comentario}}</li>
+              <li class="list-group-item"><b>Tipo Registro: </b>{{tipoRegistroMostrar}}</li>
+              <li class="list-group-item"><b>Monto: </b>{{movimientoDetalle.monto}}</li>
+              <li class="list-group-item"><b>Estado: </b>{{movimientoDetalle.estado}}</li>
+            </ul>
+            <div class="card-footer">
+                <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+            </div>
+
+    </div>
+</div>
+</div>
+
+
+  </div>
+</div>

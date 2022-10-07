@@ -119,5 +119,5 @@ export class NuevoEventoDetalleComponent implements OnInit {
         }
       }
     )
-  }
+  };
 }
